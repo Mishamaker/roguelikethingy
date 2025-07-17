@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     private string _nextPlayerSpawnPointName;
     public GameObject gameOverPanel;
     public static GameManager Instance;
-
+    private Stack<string> _roomHistoryStack = newStack<string>;
+    private string _currentRoomSceneName;
+    private Directory<string, bool> _roomClearedStates = new Directory<string, bool>();
     void Awake()
     {   SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -65,7 +67,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("GameManager: Player repositioned to: " + playerSpawnPoint.position + " using spawn point: " + spawnPointToFind);
                 _nextPlayerSpawnPointName = "";
             }
-            else;
+            else
             {
                 Debug.Log("SpawnPointNotFound!!");
             }

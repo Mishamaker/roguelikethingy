@@ -26,6 +26,7 @@ public class playerScript : MonoBehaviour
     public float nextDamageTime = 0;
     void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
 
         myRigidbody = GetComponent<Rigidbody2D>();
     }
