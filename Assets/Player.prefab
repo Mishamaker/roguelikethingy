@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9178495997037174809}
   - component: {fileID: 3999725943280949544}
   - component: {fileID: 3033039782899600870}
+  - component: {fileID: -921812203425074677}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -85,6 +86,9 @@ MonoBehaviour:
   gunCoolDown: 0.5
   delay: 5
   shootMouseButton: 0
+  playerHealth: 100
+  damageTickRate: 0.1
+  nextDamageTime: 0
 --- !u!212 &3999725943280949544
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -186,3 +190,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 60.014652, y: 40}
   m_EdgeRadius: 0
+--- !u!114 &-921812203425074677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5315696981936067212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cc02359830c6241879c0b11a4b5395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

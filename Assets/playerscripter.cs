@@ -67,10 +67,14 @@ public class Playerscripter : MonoBehaviour
 
     void LateUpdate()
     {
- 
+
         if (playerTransform == null)
         {
-           FindPlayerTarget(); 
+            FindPlayerTarget(); 
+                   if (playerTransform == null) 
+        {
+            return; 
+        }
         }
 
         Vector3 playerPosition = playerTransform.position;

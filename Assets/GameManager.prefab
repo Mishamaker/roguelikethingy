@@ -631,4 +631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allRoomScenes:
   - room1
+  - Scenes/room2
+  - Scenes/room3
   gameOverPanel: {fileID: 2192381622829664814}
+  _lastEnteredDoorName: 
