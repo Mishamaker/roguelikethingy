@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+
 public class DungeonManager : MonoBehaviour
 {
-
-
     [Header("Dungeon Generation Settings")]
     [Tooltip("The size of the dungeon grid, like 9*9")]
     public int dungeonGridSize = 9;
@@ -12,9 +10,11 @@ public class DungeonManager : MonoBehaviour
     public float roomWorldSize = 20f;
     [SerializeField]
     private Room[,] dungeonGrid;
+
     [Header("Room Prefabs")]
     public GameObject roomPrefab_Start;
     public GameObject roomPrefab_Normal_FourDoors;
+
     [Header("Player Settings")]
     public GameObject playerPrefab;
     private GameObject currentPlayerInstance;
@@ -22,149 +22,434 @@ public class DungeonManager : MonoBehaviour
     public Vector2Int currentGridPosition;
     private GameObject currentActiveRoomObject;
     private Transform spawnPoint;
-    public static DungeonManager Instance
+       public float blockedCellPercentage = 0.2f; 
 
-    {
-        get; private set;
-    }
+
+    public static DungeonManager Instance { get; private set; }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); // Destroy duplicate instances
+            Destroy(gameObject);
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Keep DungeonManager across scene loads if you change scenes later.
+        DontDestroyOnLoad(gameObject);
 
-        // Initialize the dungeon grid and generate the first floor immediately
-        InitialiazeDungeonGrid();
+        InitializeDungeonGrid();
+    }
+
+    void InitializeDungeonGrid()
+{
+    Debug.Log("Initializing Dungeon Grid...");
+
+    dungeonGrid = new Room[dungeonGridSize, dungeonGridSize];
+
+    // 1. Initialize all grid cells to EMPTY first
+    for (int x = 0; x < dungeonGridSize; x++)
+    {
+        for (int y = 0; y < dungeonGridSize; y++)
+        {
+            dungeonGrid[x, y] = new Room(RoomType.Empty, null, RoomDoors.None); // Initialize as Empty
+        }
+    }
+
+    
+ 
+    for (int x = 0; x < dungeonGridSize; x++)
+    {
+        for (int y = 0; y < dungeonGridSize; y++)
+        {
+           
+            int startX = dungeonGridSize / 2;
+            int startY = dungeonGridSize / 2;
+            if (x == startX && y == startY) continue; // Skip start room
+            // Skip immediate neighbors of start room to ensure initial paths
+            if ((Mathf.Abs(x - startX) <= 1 && y == startY) || (Mathf.Abs(y - startY) <= 1 && x == startX)) continue; 
+
+            if (Random.value < blockedCellPercentage)
+            {
+                dungeonGrid[x, y] = new Room(RoomType.Blocked);
+            }
+        }
+    }
+
+    Debug.Log("Random Blocked cells placed.");
+
+   
+    int startRoomX = dungeonGridSize / 2;
+    int startRoomY = dungeonGridSize / 2;
+
+    dungeonGrid[startRoomX, startRoomY] = new Room(RoomType.Start, roomPrefab_Start, RoomDoors.None);
+    dungeonGrid[startRoomX, startRoomY].worldPosition = new Vector2(startRoomX * roomWorldSize, startRoomY * roomWorldSize);
+    dungeonGrid[startRoomX, startRoomY].visited = true;
+    currentGridPosition = new Vector2Int(startRoomX, startRoomY);
+    Debug.Log($"Start Room set at ({startRoomX},{startRoomY}).");
+
+  
+    EnsureDungeonConnectivity(); 
+    Debug.Log("Dungeon connectivity ensured. Empty cells around paths are now Normal.");
+
+    
+    dungeonGrid[startRoomX, startRoomY].roomDoors = CalculateRoomDoors(new Vector2Int(startRoomX, startRoomY));
+    Debug.Log($"[InitializeDungeonGrid] Start Room at ({startRoomX},{startRoomY}) final calculated doors: {dungeonGrid[startRoomX, startRoomY].roomDoors}");
+
+    if (playerPrefab != null)
+    {
+        currentPlayerInstance = Instantiate(playerPrefab);
+        Debug.Log("Player instantiated.");
+    }
+    else
+    {
+        Debug.LogWarning("Player Prefab is not assigned in DungeonManager!");
     }
     
+    
+    LoadRoomAtGridPosition(currentGridPosition, GetSpawnPointNameForDirection(RoomDoors.None));
+    Debug.Log("Dungeon initialized and Start Room loaded.");
+}
+void EnsureDungeonConnectivity()
+{
+    Queue<Vector2Int> queue = new Queue<Vector2Int>();
+    HashSet<Vector2Int> visitedCells = new HashSet<Vector2Int>();
 
-    void InitialiazeDungeonGrid()
+    // Start flood fill from the current player position (which is the start room)
+    queue.Enqueue(currentGridPosition);
+    visitedCells.Add(currentGridPosition);
+
+    int cellsToGenerate = Mathf.Max(1, dungeonGridSize * dungeonGridSize / 4); // Example: generate at least 25% of grid as normal rooms
+    int generatedCells = 0;
+
+    while (queue.Count > 0 && generatedCells < cellsToGenerate)
     {
-        dungeonGrid = new Room[dungeonGridSize, dungeonGridSize];
-        for (int x = 0; x < dungeonGridSize; x++)
+        Vector2Int current = queue.Dequeue();
+
+        // If the current cell is Empty, make it Normal and assign a prefab (if not already Start or Normal)
+        if (dungeonGrid[current.x, current.y].roomType == RoomType.Empty)
         {
+            dungeonGrid[current.x, current.y].roomType = RoomType.Normal;
+            dungeonGrid[current.x, current.y].roomPrefab = roomPrefab_Normal_FourDoors; // Assign a generic prefab
+            dungeonGrid[current.x, current.y].worldPosition = new Vector2(current.x * roomWorldSize, current.y * roomWorldSize);
 
-            for (int y = 0; y < dungeonGridSize; y++)
-            {
-                dungeonGrid[x, y] = new Room(RoomType.Empty);
-            }
-
+      
+            dungeonGrid[current.x, current.y].roomDoors = CalculateRoomDoors(current);
+        
         }
-        int startX = dungeonGridSize / 2;
-        int startY = dungeonGridSize / 2;
-        dungeonGrid[startX, startY] = new Room(RoomType.Start, roomPrefab_Start, RoomDoors.North | RoomDoors.East | RoomDoors.South | RoomDoors.West);
-        dungeonGrid[startX, startY].worldPosition = new Vector2(startX * roomWorldSize, startY * roomWorldSize);
-        currentGridPosition = new Vector2Int(startX, startY);
+        generatedCells++;
 
-        currentPlayerInstance = Instantiate(playerPrefab);
-        LoadRoomAtGridPosition(currentGridPosition);
-
+        // Get valid neighbors (within bounds, not blocked, and not yet visited for pathing)
+        List<Vector2Int> neighbors = GetValidNeighbors(current);
+        foreach (Vector2Int neighbor in neighbors)
+        {
+            if (!visitedCells.Contains(neighbor) && dungeonGrid[neighbor.x, neighbor.y].roomType != RoomType.Blocked)
+            {
+                visitedCells.Add(neighbor);
+                queue.Enqueue(neighbor);
+            }
+        }
     }
+    Debug.Log($"[DungeonGeneration] Connectivity ensured. Generated {generatedCells} normal rooms.");
+}
 
-    void LoadRoomAtGridPosition(Vector2Int gridPos)
+
+List<Vector2Int> GetValidNeighbors(Vector2Int gridPos)
+{
+    List<Vector2Int> neighbors = new List<Vector2Int>();
+
+    // North
+    if (gridPos.y + 1 < dungeonGridSize) neighbors.Add(new Vector2Int(gridPos.x, gridPos.y + 1));
+    // East
+    if (gridPos.x + 1 < dungeonGridSize) neighbors.Add(new Vector2Int(gridPos.x + 1, gridPos.y));
+    // South
+    if (gridPos.y - 1 >= 0) neighbors.Add(new Vector2Int(gridPos.x, gridPos.y - 1));
+    // West
+    if (gridPos.x - 1 >= 0) neighbors.Add(new Vector2Int(gridPos.x - 1, gridPos.y));
+
+    return neighbors;
+}
+    void LoadRoomAtGridPosition(Vector2Int gridPos, string spawnPointName)
     {
+        Debug.Log($"[LoadRoom] Attempting to load room at grid: {gridPos.x},{gridPos.y} with spawn point: {spawnPointName}");
         Room roomToLoad = dungeonGrid[gridPos.x, gridPos.y];
+
         if (roomToLoad == null)
         {
+            Debug.LogError("roomToLoad is NULL! This should not happen if dungeonGrid is initialized correctly.");
             return;
         }
-        if (roomToLoad.instantiatedRoomObject != null)
+
+        if (roomToLoad.roomPrefab == null)
         {
-
-
-            if (currentActiveRoomObject != null && currentActiveRoomObject != roomToLoad.instantiatedRoomObject)
-            {
-                currentActiveRoomObject.SetActive(false);
-
-            }
-            roomToLoad.instantiatedRoomObject.SetActive(true);
-            currentActiveRoomObject = roomToLoad.instantiatedRoomObject;
-            Debug.Log("new room loaded");
-            PlacePlayerInCurrentRoom();
+            Debug.LogError($"Room prefab is NULL for room at ({gridPos.x},{gridPos.y}). Make sure it's assigned in the DungeonManager Inspector or during room data setup!");
             return;
         }
-        GameObject newRoomObject = Instantiate(roomToLoad.roomPrefab, roomToLoad.worldPosition, Quaternion.identity);
-        roomToLoad.instantiatedRoomObject = newRoomObject;
-        currentActiveRoomObject = newRoomObject;
-        roomToLoad.visited = true;
 
-
-    }
-    void PlacePlayerInCurrentRoom()
-    {
-
-
-        if (currentActiveRoomObject != null)
+        if (currentActiveRoomObject != null && currentActiveRoomObject != roomToLoad.instantiatedRoomObject)
         {
-            spawnPoint = currentActiveRoomObject.transform.Find("PlayerSpawn");
-            if (spawnPoint == null)
-            {
-                Debug.Log("< color = red > Spawn point not found yo </color>");
-                Vector2 roomCenterWorldPos = new Vector2(
-            currentGridPosition.x * roomWorldSize + (roomWorldSize / 2f),
-            currentGridPosition.y * roomWorldSize + (roomWorldSize / 2f)
-                );
-        currentPlayerInstance.transform.position = roomCenterWorldPos;
-        Debug.Log($"Player placed at room center: {roomCenterWorldPos}");
-
-            }
-            else
-            {
-                currentPlayerInstance.transform.position = spawnPoint.position;
-                Debug.Log("<color=green>spawn point found(:</color>");
-
-            }
-        }
-
-
-    }
-    public void MovePlayer(RoomDoors exitDirection)
-    {
-        Vector2Int newGridPos = currentGridPosition;
-        switch (exitDirection)
-        {
-            case RoomDoors.East: newGridPos.x += 1; break;
-            case RoomDoors.West: newGridPos.x -= 1; break;
-            case RoomDoors.North: newGridPos.y += 1; break;
-            case RoomDoors.South: newGridPos.y -= 1; break;
-            default: Debug.LogWarning("no exit direction found somewhow ):<");
-                return;
-                // TO DO (add boundry checks here)
-        }
-        currentGridPosition = newGridPos;
-        if (currentActiveRoomObject != null)
-        {
+            Debug.Log($"[LoadRoom] Deactivating previous room: {currentActiveRoomObject.name}");
             currentActiveRoomObject.SetActive(false);
         }
-        LoadRoomAtGridPosition(currentGridPosition);
 
+        if (roomToLoad.instantiatedRoomObject != null)
+        {
+            Debug.Log($"[LoadRoom] Room already instantiated: {roomToLoad.instantiatedRoomObject.name}. Activating it.");
+            roomToLoad.instantiatedRoomObject.SetActive(true);
+            currentActiveRoomObject = roomToLoad.instantiatedRoomObject;
+            Debug.Log($"[LoadRoom] currentActiveRoomObject set to (existing room): {currentActiveRoomObject.name}");
+    
+        }
+        else
+        {
+            Debug.Log($"[LoadRoom] roomToLoad.instantiatedRoomObject is NULL. Instantiating new room from prefab: {roomToLoad.roomPrefab.name}");
+            
+            GameObject newRoomObject = Instantiate(roomToLoad.roomPrefab, roomToLoad.worldPosition, Quaternion.identity);
+
+            if (newRoomObject == null)
+            {
+                Debug.LogError($"[LoadRoom ERROR] Instantiate returned NULL for prefab: {roomToLoad.roomPrefab.name}. Room could not be created! Cannot place player.");
+                return;
+            }
+
+            roomToLoad.instantiatedRoomObject = newRoomObject;
+            currentActiveRoomObject = newRoomObject;
+            roomToLoad.visited = true;
+
+            Debug.Log($"[LoadRoom] New room instantiated and assigned: {newRoomObject.name}. currentActiveRoomObject set to (new room): {currentActiveRoomObject.name}. Player will be placed.");
+            
+         
+        }
+         if (currentActiveRoomObject != null)
+    {
+        
+        Debug.Log($"[LoadRoom Debug] Room to load at {gridPos.x},{gridPos.y} has roomType: {roomToLoad.roomType}, roomDoors data: {roomToLoad.roomDoors}");
+
+     
+
+        RoomController roomController = currentActiveRoomObject.GetComponent<RoomController>();
+        if (roomController != null)
+        {
+       
+
+            roomController.SetupDoors(roomToLoad); 
+            Debug.Log($"[LoadRoom Debug] RoomController found on {currentActiveRoomObject.name}. Setting up doors based on data: {roomToLoad.roomDoors}");
+        }
+        else
+        {
+           
+            Debug.LogWarning($"[LoadRoom] Room object {currentActiveRoomObject.name} is missing a RoomController! Doors might not update visually.");
+        }
+
+        // Place the player AFTER the room's doors have been set up visually.
+            PlacePlayerInCurrentRoom(spawnPointName);
+        Debug.Log("Player will be placed in current room after door setup.");
     }
+    else
+    {
+       
+        Debug.LogError("[LoadRoom Final Error] currentActiveRoomObject is NULL after instantiation/activation attempt. Cannot proceed with RoomController setup or player placement.");
+        return; 
+    }
+    }
+   void PlacePlayerInCurrentRoom(string spawnPointName)
+{
+    Debug.Log($"[PlacePlayer] Attempting to place player in room '{ (currentActiveRoomObject != null ? currentActiveRoomObject.name : "NULL_ROOM_OBJECT") }' using spawn point name: '{spawnPointName}'");
+
+    if (currentPlayerInstance == null) // Add a null check for player instance
+    {
+        Debug.LogError("[PlacePlayer Error] currentPlayerInstance is NULL. Cannot place player.");
+        return;
+    }
+
+    if (currentActiveRoomObject != null)
+    {
+        spawnPoint = currentActiveRoomObject.transform.Find(spawnPointName);
+        Vector3 playerTargetPosition; // Use Vector3 to handle Z explicitly
+
+        if (spawnPoint == null)
+        {
+            Debug.LogError($"<color=red>Spawn point '{spawnPointName}' NOT found as a child of '{currentActiveRoomObject.name}'.</color> Placing player at room center as fallback.");
+            
+            // Calculate room center, then set a consistent Z
+            playerTargetPosition = new Vector3(
+                currentGridPosition.x * roomWorldSize + (roomWorldSize / 2f),
+                currentGridPosition.y * roomWorldSize + (roomWorldSize / 2f),
+                -0.1f // <--- IMPORTANT: Set your desired fixed Z-position here!
+            );
+        }
+        else
+        {
+            playerTargetPosition = spawnPoint.position;
+            // <--- IMPORTANT: Override the spawnPoint's Z with your desired fixed Z-position!
+            playerTargetPosition.z = -0.1f; // Adjust this value as needed for your scene
+            Debug.Log($"<color=green>Player spawned at '{spawnPoint.name}' (World Pos: {spawnPoint.position}) in '{currentActiveRoomObject.name}'.</color>");
+        }
+
+        currentPlayerInstance.transform.position = playerTargetPosition;
+        Debug.Log($"Player final placed at: {currentPlayerInstance.transform.position}");
+    }
+    else
+    {
+        Debug.LogError("[PlacePlayer Error] currentActiveRoomObject is NULL. Cannot place player.");
+    }
+}
+
+    private RoomDoors GetOppositeDirection(RoomDoors direction)
+    {
+        switch (direction)
+        {
+            case RoomDoors.North: return RoomDoors.South;
+            case RoomDoors.East: return RoomDoors.West;
+            case RoomDoors.South: return RoomDoors.North;
+            case RoomDoors.West: return RoomDoors.East;
+            default: return RoomDoors.None;
+        }
+    }
+
+
+public void MovePlayer(RoomDoors exitDirection)
+{
+    Vector2Int newGridPos = currentGridPosition;
+
+    //  Calculate the potential new grid position based on exitDirection
+    switch (exitDirection)
+    {
+        case RoomDoors.East: newGridPos.x += 1; break;
+        case RoomDoors.West: newGridPos.x -= 1; break;
+        case RoomDoors.North: newGridPos.y += 1; break;
+        case RoomDoors.South: newGridPos.y -= 1; break;
+        default: Debug.LogWarning("DungeonManager: No valid exit direction found."); return;
+    }
+
+    
+    if (newGridPos.x < 0 || newGridPos.x >= dungeonGridSize ||
+        newGridPos.y < 0 || newGridPos.y >= dungeonGridSize)
+    {
+        Debug.LogWarning($"Attempted to move out of dungeon bounds! Current: {currentGridPosition}, Tried: {newGridPos}");
+        return; // Stop movement if out of bounds
+    }
+
+    if (dungeonGrid[newGridPos.x, newGridPos.y].roomType == RoomType.Blocked)
+    {
+        Debug.Log("Player is trying to enter a blocked room. Movement stopped.");
+        return; // Prevent movement into Blocked cells
+    }
+
+    
+    RoomDoors entryDirectionIntoNewRoom = GetOppositeDirection(exitDirection);
+          Debug.Log($"[MovePlayer Debug] Moving from {currentGridPosition} (Type: {dungeonGrid[currentGridPosition.x, currentGridPosition.y].roomType}) via {exitDirection}. Target grid: {newGridPos}. RoomType at target: {dungeonGrid[newGridPos.x, newGridPos.y].roomType}");
+        //  Handle movement into an Empty cell (generating a new room)
+        if (dungeonGrid[newGridPos.x, newGridPos.y].roomType == RoomType.Empty)
+        {
+            Debug.Log($"[MovePlayer - New Room] Processing empty cell at {newGridPos}.");
+
+            dungeonGrid[newGridPos.x, newGridPos.y].roomType = RoomType.Normal;
+            dungeonGrid[newGridPos.x, newGridPos.y].roomPrefab = roomPrefab_Normal_FourDoors;// Still using Start prefab for Normal rooms
+
+            RoomDoors generatedDoors = CalculateRoomDoors(newGridPos);
+            generatedDoors |= entryDirectionIntoNewRoom;
+            dungeonGrid[newGridPos.x, newGridPos.y].roomDoors = generatedDoors;
+
+
+            Debug.Log($"[MovePlayer - New Room] Before worldPosition assignment: dungeonGrid[{newGridPos.x},{newGridPos.y}].worldPosition = {dungeonGrid[newGridPos.x, newGridPos.y].worldPosition}");
+
+            Vector2 calculatedWorldPos = new Vector2(newGridPos.x * roomWorldSize, newGridPos.y * roomWorldSize);
+            Debug.Log($"[MovePlayer - New Room] Calculated worldPosition: {calculatedWorldPos} (from grid {newGridPos} and roomWorldSize {roomWorldSize})");
+
+            dungeonGrid[newGridPos.x, newGridPos.y].worldPosition = calculatedWorldPos; // Assign the calculated value
+
+            Debug.Log($"[MovePlayer - New Room] After worldPosition assignment: dungeonGrid[{newGridPos.x},{newGridPos.y}].worldPosition = {dungeonGrid[newGridPos.x, newGridPos.y].worldPosition}");
+
+
+            Debug.Log($"[MovePlayer Debug] New room at {newGridPos.x},{newGridPos.y} has calculated doors: {generatedDoors}");
+        }
+        else
+        {
+            Debug.Log("ts not empty");
+    }
+    
+    currentGridPosition = newGridPos;
+
+   
+    string spawnPointNameInNewRoom = GetSpawnPointNameForDirection(entryDirectionIntoNewRoom);
+
+    //  Load the room at the new grid position (this handles instantiation/activation and calls RoomController.SetupDoors)
+    LoadRoomAtGridPosition(currentGridPosition, spawnPointNameInNewRoom);
+    Debug.Log($"Room at {currentGridPosition.x},{currentGridPosition.y} is now loaded."); // Debug Log
+}
+
+    private string GetSpawnPointNameForDirection(RoomDoors direction)
+    {
+        switch (direction)
+        {
+            case RoomDoors.North: return "SpawnPoint_North";
+            case RoomDoors.East: return "SpawnPoint_East";
+            case RoomDoors.South: return "SpawnPoint_South";
+            case RoomDoors.West: return "SpawnPoint_West";
+            case RoomDoors.None: return "PlayerSpawn_Start";
+            default: return "PlayerSpawn_Start";
+        }
+    }
+    private RoomDoors CalculateRoomDoors(Vector2Int roomGridPos){
+        RoomDoors generatedDoors =RoomDoors.None;
+         Vector2Int northNeighborPos = new Vector2Int(roomGridPos.x, roomGridPos.y + 1);
+    if (northNeighborPos.y < dungeonGridSize && dungeonGrid[northNeighborPos.x, northNeighborPos.y].roomType != RoomType.Blocked)
+    {
+        Debug.Log("The north is not blocked");
+        generatedDoors |= RoomDoors.North;
+    } Vector2Int eastNeighborPos = new Vector2Int(roomGridPos.x+1, roomGridPos.y);
+    if (eastNeighborPos.y < dungeonGridSize && dungeonGrid[eastNeighborPos.x, eastNeighborPos.y].roomType != RoomType.Blocked)
+    {
+        Debug.Log("The east is not blocked");
+        generatedDoors |= RoomDoors.East;
+    }
+     Vector2Int southNeighborPos = new Vector2Int(roomGridPos.x, roomGridPos.y-1);
+    if (southNeighborPos.y < dungeonGridSize && dungeonGrid[southNeighborPos.x, southNeighborPos.y].roomType != RoomType.Blocked)
+    {Debug.Log("The south is not blocked");
+        generatedDoors |= RoomDoors.South;
+    }
+     Vector2Int westNeighborPos = new Vector2Int(roomGridPos.x-1, roomGridPos.y);
+    if (westNeighborPos.y < dungeonGridSize && dungeonGrid[westNeighborPos.x, westNeighborPos.y].roomType != RoomType.Blocked)
+    {   Debug.Log("The west is not blocked");
+        generatedDoors |= RoomDoors.West;
+    }
+    return generatedDoors;
+    }
+
     private void OnDrawGizmos()
     {
         if (dungeonGrid != null)
         {
-            Gizmos.color = Color.grey;
             for (int x = 0; x < dungeonGridSize; x++)
             {
                 for (int y = 0; y < dungeonGridSize; y++)
                 {
-                    Vector3 center = new Vector3(x * roomWorldSize, y * roomWorldSize, 0);
-                    Gizmos.DrawWireCube(center, new Vector3(roomWorldSize+(roomWorldSize / 2f), roomWorldSize+(roomWorldSize / 2f), 0));
+                    Vector3 cellCenter = new Vector3(
+                        x * roomWorldSize + (roomWorldSize / 2f),
+                        y * roomWorldSize + (roomWorldSize / 2f),
+                        0
+                    );
+
+                    Vector3 cubeDimensions = new Vector3(roomWorldSize, roomWorldSize, 0.1f);
+                Room currentRoom = dungeonGrid[x, y];
+                    Gizmos.color = Color.grey;
+                    Gizmos.DrawWireCube(cellCenter, cubeDimensions);
+                     if (currentRoom.roomType == RoomType.Blocked)
+            {
+                Gizmos.color = Color.red; 
+                
+                Gizmos.DrawCube(cellCenter, new Vector3(roomWorldSize,  roomWorldSize,0.1f));
+            }
                     if (dungeonGrid[x, y] != null && dungeonGrid[x, y].roomPrefab != null)
                     {
                         if (dungeonGrid[x, y].visited)
                         {
                             Gizmos.color = Color.blue;
-                            Gizmos.DrawCube(center, new Vector3(roomWorldSize, roomWorldSize, 0.1f));
+                            Gizmos.DrawCube(cellCenter, new Vector3(roomWorldSize, roomWorldSize, 0.1f));
                         }
                     }
                 }
             }
         }
     }
-    
-} 
+}

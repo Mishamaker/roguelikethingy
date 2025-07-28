@@ -28,13 +28,10 @@ Transform:
   m_GameObject: {fileID: 1020255474668620221}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9, y: -17.2, z: 0}
-  m_LocalScale: {x: 2.17, y: 0.11, z: 1}
+  m_LocalPosition: {x: 148, y: 2.5, z: 0}
+  m_LocalScale: {x: 2.17, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4346022049644258410}
-  - {fileID: 8845011779598430100}
-  - {fileID: 7433321914008922889}
+  m_Children: []
   m_Father: {fileID: 8068102349179743318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5686707773812903510
@@ -157,13 +154,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 30.72, y: 40.80062}
+    oldSize: {x: 153.6, y: 204.00311}
     newSize: {x: 30.72, y: 40.80062}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 30.72, y: 40.80062}
+  m_Size: {x: 140, y: 40.80062}
   m_EdgeRadius: 0
 --- !u!1 &1095362339530610035
 GameObject:
@@ -178,7 +175,7 @@ GameObject:
   - component: {fileID: 7685627875819408434}
   - component: {fileID: 8294028213843173494}
   m_Layer: 1
-  m_Name: Door (1)
+  m_Name: DoorSouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -193,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 1095362339530610035}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -15.9, z: 0}
+  m_LocalPosition: {x: 148, y: 13.2, z: 0}
   m_LocalScale: {x: 0.0733, y: 0.1325, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -292,13 +289,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 30.72, y: 40.80062}
+    oldSize: {x: 153.6, y: 204.00311}
     newSize: {x: 30.72, y: 40.80062}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 30.72, y: 40.80062}
+  m_Size: {x: 100, y: 200}
   m_EdgeRadius: 0
 --- !u!114 &8294028213843173494
 MonoBehaviour:
@@ -312,8 +309,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ec6ae5eaf8d87498987ba793dd50d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSpawnPointNameInNextRoom: PlayerSpawn_Up
-  correspondingSpawnPointName: PlayerSpawn_Down
+  targetRoomType: 
+  exitDirectionForThisDoor: 1
+  isLocked: 0
+  targetSpawnPointNameInNextRoom: PlayerSpawn_South
+  correspondingSpawnPointName: PlayerSpawn_North
+  dungeonManager: {fileID: 3415987147797275266, guid: 5c7d3708aba48ec42b4b7995979cb3ca, type: 3}
 --- !u!1 &2187719563727192349
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8068102349179743318}
   - component: {fileID: 8845084238241792556}
+  - component: {fileID: 5805551320889259143}
   m_Layer: 1
   m_Name: Room1
   m_TagString: Untagged
@@ -340,8 +342,8 @@ Transform:
   m_GameObject: {fileID: 2187719563727192349}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7, y: 0.2, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2384081544473959908}
@@ -350,6 +352,9 @@ Transform:
   - {fileID: 1757258571196755933}
   - {fileID: 1066558679853930913}
   - {fileID: 5762704977018933415}
+  - {fileID: 4346022049644258410}
+  - {fileID: 8845011779598430100}
+  - {fileID: 7433321914008922889}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8845084238241792556
@@ -406,7 +411,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
+--- !u!114 &5805551320889259143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187719563727192349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af835ba89f06bc41ab6462488495324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorNorth: {fileID: 3808622670145401301}
+  doorSouth: {fileID: 1095362339530610035}
+  doorEast: {fileID: 7554100954912088140}
+  doorWest: {fileID: 3430278059137269157}
 --- !u!1 &3342171448676564115
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,11 +456,11 @@ Transform:
   m_GameObject: {fileID: 3342171448676564115}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0033160832, y: 0.006806669, z: -0.000022572125, w: 0.9999714}
-  m_LocalPosition: {x: 13.82, y: 135, z: -0.9}
-  m_LocalScale: {x: 0.01, y: 10, z: 1}
+  m_LocalPosition: {x: 299, y: 95.9, z: 2}
+  m_LocalScale: {x: 0.1, y: 1.1003914, z: 1.0001777}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2384081544473959908}
+  m_Father: {fileID: 8068102349179743318}
   m_LocalEulerAnglesHint: {x: 0.38, y: 0.78, z: 0}
 --- !u!50 &1826397712840964503
 Rigidbody2D:
@@ -561,13 +582,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 30.72, y: 40.80062}
+    oldSize: {x: 153.6, y: 204.00311}
     newSize: {x: 30.72, y: 40.80062}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 30.72, y: 40.80062}
+  m_Size: {x: 30.72, y: 200}
   m_EdgeRadius: 0
 --- !u!1 &3430278059137269157
 GameObject:
@@ -582,7 +603,7 @@ GameObject:
   - component: {fileID: 6975611337024182564}
   - component: {fileID: 8022838360806896191}
   m_Layer: 1
-  m_Name: Door (2)
+  m_Name: DoorWest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -597,7 +618,7 @@ Transform:
   m_GameObject: {fileID: 3430278059137269157}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.3, y: -0.3, z: 0}
+  m_LocalPosition: {x: 3, y: 100, z: 0}
   m_LocalScale: {x: 0.0733, y: 0.1325, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -696,13 +717,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 30.72, y: 40.80062}
+    oldSize: {x: 153.6, y: 204.00311}
     newSize: {x: 30.72, y: 40.80062}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 30.72, y: 40.80062}
+  m_Size: {x: 100, y: 200}
   m_EdgeRadius: 0
 --- !u!114 &8022838360806896191
 MonoBehaviour:
@@ -716,8 +737,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ec6ae5eaf8d87498987ba793dd50d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSpawnPointNameInNextRoom: PlayerSpawn_Left
-  correspondingSpawnPointName: PlayerSpawn_Right
+  targetRoomType: 
+  exitDirectionForThisDoor: 8
+  isLocked: 0
+  targetSpawnPointNameInNextRoom: PlayerSpawn_West
+  correspondingSpawnPointName: PlayerSpawn_East
+  dungeonManager: {fileID: 3415987147797275266, guid: 5c7d3708aba48ec42b4b7995979cb3ca, type: 3}
 --- !u!1 &3465807169517715967
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +791,7 @@ GameObject:
   - component: {fileID: 6028836932682829325}
   - component: {fileID: 8492558855250027370}
   m_Layer: 1
-  m_Name: Door
+  m_Name: DoorNorth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -781,7 +806,7 @@ Transform:
   m_GameObject: {fileID: 3808622670145401301}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.3, y: -0.2, z: 0}
+  m_LocalPosition: {x: 139, y: 194.5, z: -2}
   m_LocalScale: {x: 0.0733, y: 0.1325, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -880,13 +905,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 30.72, y: 40.80062}
+    oldSize: {x: 153.6, y: 204.00311}
     newSize: {x: 30.72, y: 40.80062}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 30.72, y: 40.80062}
+  m_Size: {x: 100, y: 200}
   m_EdgeRadius: 0
 --- !u!114 &8492558855250027370
 MonoBehaviour:
@@ -900,8 +925,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ec6ae5eaf8d87498987ba793dd50d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSpawnPointNameInNextRoom: PlayerSpawn_Right
-  correspondingSpawnPointName: PlayerSpawn_Left
+  targetRoomType: 
+  exitDirectionForThisDoor: 2
+  isLocked: 0
+  targetSpawnPointNameInNextRoom: PlayerSpawn_North
+  correspondingSpawnPointName: PlayerSpawn_South
+  dungeonManager: {fileID: 3415987147797275266, guid: 5c7d3708aba48ec42b4b7995979cb3ca, type: 3}
 --- !u!1 &4999222061878310878
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,11 +959,11 @@ Transform:
   m_GameObject: {fileID: 4999222061878310878}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0033160832, y: 0.006806669, z: -0.000022572125, w: 0.9999714}
-  m_LocalPosition: {x: -13.47, y: 147, z: 0.7}
-  m_LocalScale: {x: 0.01, y: 10, z: 1}
+  m_LocalPosition: {x: -6, y: 96.8, z: 0}
+  m_LocalScale: {x: 0.1, y: 1.1003914, z: 1.0001777}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2384081544473959908}
+  m_Father: {fileID: 8068102349179743318}
   m_LocalEulerAnglesHint: {x: 0.38, y: 0.78, z: 0}
 --- !u!50 &454905139835666755
 Rigidbody2D:
@@ -1056,13 +1085,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 30.72, y: 40.80062}
+    oldSize: {x: 153.6, y: 204.00311}
     newSize: {x: 30.72, y: 40.80062}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 30.72, y: 40.80062}
+  m_Size: {x: 30.72, y: 200}
   m_EdgeRadius: 0
 --- !u!1 &7554100954912088140
 GameObject:
@@ -1077,7 +1106,7 @@ GameObject:
   - component: {fileID: 6449542535395627700}
   - component: {fileID: 2752139750219787303}
   m_Layer: 1
-  m_Name: Door (3)
+  m_Name: DoorEast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1092,7 +1121,7 @@ Transform:
   m_GameObject: {fileID: 7554100954912088140}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 18.5, z: 0}
+  m_LocalPosition: {x: 303, y: 92.3, z: 40}
   m_LocalScale: {x: 0.0733, y: 0.1325, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1191,13 +1220,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 30.72, y: 40.80062}
+    oldSize: {x: 153.6, y: 204.00311}
     newSize: {x: 30.72, y: 40.80062}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 30.72, y: 40.80062}
+  m_Size: {x: 100, y: 200}
   m_EdgeRadius: 0
 --- !u!114 &2752139750219787303
 MonoBehaviour:
@@ -1211,8 +1240,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ec6ae5eaf8d87498987ba793dd50d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSpawnPointNameInNextRoom: PlayerSpawn_Down
-  correspondingSpawnPointName: PlayerSpawn_Up
+  targetRoomType: 
+  exitDirectionForThisDoor: 4
+  isLocked: 0
+  targetSpawnPointNameInNextRoom: PlayerSpawn_East
+  correspondingSpawnPointName: PlayerSpawn_West
+  dungeonManager: {fileID: 3415987147797275266, guid: 5c7d3708aba48ec42b4b7995979cb3ca, type: 3}
 --- !u!1 &8002177164944021792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,13 +1273,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8002177164944021792}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0033160832, y: 0.006806669, z: -0.000022572125, w: 0.9999714}
-  m_LocalPosition: {x: 0.60008, y: 357.1757, z: 0.0626}
-  m_LocalScale: {x: 1, y: 1.8409, z: 1}
+  m_LocalRotation: {x: 0.0032989632, y: 0.006814982, z: -0.0025360945, w: 0.9999681}
+  m_LocalPosition: {x: 148, y: 201.9, z: -1}
+  m_LocalScale: {x: 2, y: 0.1, z: 1.0001777}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2384081544473959908}
-  m_LocalEulerAnglesHint: {x: 0.38, y: 0.78, z: 0}
+  m_Father: {fileID: 8068102349179743318}
+  m_LocalEulerAnglesHint: {x: 0.38, y: 0.78, z: -0.288}
 --- !u!50 &2525263308606633665
 Rigidbody2D:
   serializedVersion: 5
@@ -1367,13 +1400,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 30.72, y: 40.80062}
+    oldSize: {x: 153.6, y: 204.00311}
     newSize: {x: 30.72, y: 40.80062}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 30.72, y: 40.80062}
+  m_Size: {x: 160, y: 40.80062}
   m_EdgeRadius: 0
 --- !u!1001 &1321168960145509781
 PrefabInstance:
@@ -1385,7 +1418,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 274219618680756347, guid: 23f4ecb144ec99a43af8cf5253b5543e, type: 3}
       propertyPath: m_Name
-      value: PlayerSpawn_Right
+      value: SpawnPoint_East
       objectReference: {fileID: 0}
     - target: {fileID: 2060556656822146100, guid: 23f4ecb144ec99a43af8cf5253b5543e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1397,15 +1430,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2060556656822146100, guid: 23f4ecb144ec99a43af8cf5253b5543e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22
+      value: 235.4
       objectReference: {fileID: 0}
     - target: {fileID: 2060556656822146100, guid: 23f4ecb144ec99a43af8cf5253b5543e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 93.5
       objectReference: {fileID: 0}
     - target: {fileID: 2060556656822146100, guid: 23f4ecb144ec99a43af8cf5253b5543e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -35.3
       objectReference: {fileID: 0}
     - target: {fileID: 2060556656822146100, guid: 23f4ecb144ec99a43af8cf5253b5543e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1463,15 +1496,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: -1155
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1666
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1503,7 +1536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6784569991983760164, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_Name
-      value: PlayerSpawn_Left
+      value: SpawnPoint_West
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1525,7 +1558,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5525645153309748952, guid: 6167b5282b1685146a0bfb20eb894bcc, type: 3}
       propertyPath: m_Name
-      value: PlayerSpawn_Down
+      value: SpawnPoint_South
       objectReference: {fileID: 0}
     - target: {fileID: 8573058967065016599, guid: 6167b5282b1685146a0bfb20eb894bcc, type: 3}
       propertyPath: m_LocalScale.x
@@ -1537,11 +1570,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8573058967065016599, guid: 6167b5282b1685146a0bfb20eb894bcc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 139
       objectReference: {fileID: 0}
     - target: {fileID: 8573058967065016599, guid: 6167b5282b1685146a0bfb20eb894bcc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7
+      value: 32.4
       objectReference: {fileID: 0}
     - target: {fileID: 8573058967065016599, guid: 6167b5282b1685146a0bfb20eb894bcc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1595,7 +1628,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4386577864521372180, guid: b9568659f8edc864780de304c4db1b57, type: 3}
       propertyPath: m_Name
-      value: PlayerSpawn_Up
+      value: SpawnPoint_North
       objectReference: {fileID: 0}
     - target: {fileID: 7420883799448911325, guid: b9568659f8edc864780de304c4db1b57, type: 3}
       propertyPath: m_LocalScale.x
@@ -1607,15 +1640,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7420883799448911325, guid: b9568659f8edc864780de304c4db1b57, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 141
       objectReference: {fileID: 0}
     - target: {fileID: 7420883799448911325, guid: b9568659f8edc864780de304c4db1b57, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 170.5
       objectReference: {fileID: 0}
     - target: {fileID: 7420883799448911325, guid: b9568659f8edc864780de304c4db1b57, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7420883799448911325, guid: b9568659f8edc864780de304c4db1b57, type: 3}
       propertyPath: m_LocalRotation.w

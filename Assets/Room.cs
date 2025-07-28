@@ -9,7 +9,7 @@ public class Room
     public GameObject roomPrefab;
     public bool visited;
     public RoomDoors openDoors;
-
+    public RoomDoors roomDoors;
     [HideInInspector] public GameObject instantiatedRoomObject;
 
     public Vector2 worldPosition;
