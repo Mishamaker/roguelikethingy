@@ -251,6 +251,32 @@ List<Vector2Int> GetValidNeighbors(Vector2Int gridPos)
         return; 
     }
     }
+     void CheckRoomForEnemiesAndLockDoors(RoomController roomController, GameObject roomObject)
+    {
+       
+        int enemiesFound = 0;
+        foreach (Transform child in roomObject.transform)
+        {
+            
+            if (child.CompareTag("Enemy"))
+            {
+                
+                roomController.RegisterEnemy(child.gameObject);
+                enemiesFound++;
+            }
+        }
+
+        if (enemiesFound > 0)
+        {
+            roomController.LockAllActiveDoors();
+            Debug.Log($"[DungeonManager] Room has {enemiesFound} enemies. Doors locked.");
+        }
+        else
+        {
+            roomController.UnlockAllActiveDoors(); // Ensure doors are unlocked if no enemies
+            Debug.Log($"[DungeonManager] No enemies in room. Doors unlocked.");
+        }
+    }
    void PlacePlayerInCurrentRoom(string spawnPointName)
 {
     Debug.Log($"[PlacePlayer] Attempting to place player in room '{ (currentActiveRoomObject != null ? currentActiveRoomObject.name : "NULL_ROOM_OBJECT") }' using spawn point name: '{spawnPointName}'");

@@ -310,10 +310,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRoomType: 
-  exitDirectionForThisDoor: 1
+  exitDirectionForThisDoor: 4
   isLocked: 0
-  targetSpawnPointNameInNextRoom: PlayerSpawn_South
-  correspondingSpawnPointName: PlayerSpawn_North
+  targetSpawnPointNameInNextRoom: SpawnPoint_South
+  correspondingSpawnPointName: SpawnPoint_North
   dungeonManager: {fileID: 3415987147797275266, guid: 5c7d3708aba48ec42b4b7995979cb3ca, type: 3}
 --- !u!1 &2187719563727192349
 GameObject:
@@ -740,8 +740,8 @@ MonoBehaviour:
   targetRoomType: 
   exitDirectionForThisDoor: 8
   isLocked: 0
-  targetSpawnPointNameInNextRoom: PlayerSpawn_West
-  correspondingSpawnPointName: PlayerSpawn_East
+  targetSpawnPointNameInNextRoom: SpawnPoint_West
+  correspondingSpawnPointName: SpawnPoint_East
   dungeonManager: {fileID: 3415987147797275266, guid: 5c7d3708aba48ec42b4b7995979cb3ca, type: 3}
 --- !u!1 &3465807169517715967
 GameObject:
@@ -926,10 +926,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRoomType: 
-  exitDirectionForThisDoor: 2
+  exitDirectionForThisDoor: 1
   isLocked: 0
-  targetSpawnPointNameInNextRoom: PlayerSpawn_North
-  correspondingSpawnPointName: PlayerSpawn_South
+  targetSpawnPointNameInNextRoom: SpawnPoint_North
+  correspondingSpawnPointName: SpawnPoint_South
   dungeonManager: {fileID: 3415987147797275266, guid: 5c7d3708aba48ec42b4b7995979cb3ca, type: 3}
 --- !u!1 &4999222061878310878
 GameObject:
@@ -1121,7 +1121,7 @@ Transform:
   m_GameObject: {fileID: 7554100954912088140}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 303, y: 92.3, z: 40}
+  m_LocalPosition: {x: 285, y: 97.2, z: 0}
   m_LocalScale: {x: 0.0733, y: 0.1325, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1241,10 +1241,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRoomType: 
-  exitDirectionForThisDoor: 4
+  exitDirectionForThisDoor: 2
   isLocked: 0
-  targetSpawnPointNameInNextRoom: PlayerSpawn_East
-  correspondingSpawnPointName: PlayerSpawn_West
+  targetSpawnPointNameInNextRoom: SpawnPoint_East
+  correspondingSpawnPointName: SpawnPoint_West
   dungeonManager: {fileID: 3415987147797275266, guid: 5c7d3708aba48ec42b4b7995979cb3ca, type: 3}
 --- !u!1 &8002177164944021792
 GameObject:
@@ -1430,15 +1430,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2060556656822146100, guid: 23f4ecb144ec99a43af8cf5253b5543e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 235.4
+      value: 263
       objectReference: {fileID: 0}
     - target: {fileID: 2060556656822146100, guid: 23f4ecb144ec99a43af8cf5253b5543e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 93.5
+      value: 102.2
       objectReference: {fileID: 0}
     - target: {fileID: 2060556656822146100, guid: 23f4ecb144ec99a43af8cf5253b5543e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -35.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2060556656822146100, guid: 23f4ecb144ec99a43af8cf5253b5543e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1496,31 +1496,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1155
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21
+      value: 104.8
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1666
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9989274
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.046303123
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1528,7 +1528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -5.308
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 724481206549711170, guid: 8ff1b25485e14ae4b994ed9b37d4206e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1570,11 +1570,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8573058967065016599, guid: 6167b5282b1685146a0bfb20eb894bcc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 139
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 8573058967065016599, guid: 6167b5282b1685146a0bfb20eb894bcc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.4
+      value: 36.1
       objectReference: {fileID: 0}
     - target: {fileID: 8573058967065016599, guid: 6167b5282b1685146a0bfb20eb894bcc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1640,15 +1640,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7420883799448911325, guid: b9568659f8edc864780de304c4db1b57, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 141
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 7420883799448911325, guid: b9568659f8edc864780de304c4db1b57, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 170.5
+      value: 165.2
       objectReference: {fileID: 0}
     - target: {fileID: 7420883799448911325, guid: b9568659f8edc864780de304c4db1b57, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7420883799448911325, guid: b9568659f8edc864780de304c4db1b57, type: 3}
       propertyPath: m_LocalRotation.w
