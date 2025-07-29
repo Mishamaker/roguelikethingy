@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 public class Playerscripter : MonoBehaviour
 {
+    public GameObject playerPrefab;
     public Transform playerTransform; // Target to follow
     public float cameraZOffset;       // Stores the fixed Z position for the camera
 
@@ -55,6 +56,7 @@ public class Playerscripter : MonoBehaviour
         else
         {
             playerTransform = null;
+            Instantiate(playerPrefab);
             Debug.LogWarning("CameraFollow: Player with tag 'Player' NOT found. Camera will not follow.");
         }
     }

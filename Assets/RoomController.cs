@@ -3,120 +3,121 @@ using System.Collections.Generic;
 
 public class RoomController : MonoBehaviour
 {
-    // Make sure these are assigned in the Inspector for each room prefab!
+    // Back to GameObject references
     [Header("Door References")]
-    public GameObject doorNorth;
+    public GameObject doorNorth; // Assign the GameObject (with roomTransition & Collider2D)
     public GameObject doorSouth;
     public GameObject doorEast;
     public GameObject doorWest;
 
-    // This variable was missing, crucial for door logic!
     private RoomDoors currentRoomDoorsState; 
 
     private List<GameObject> activeEnemiesInRoom = new List<GameObject>();
     private bool areDoorsLocked = false;
 
-    // Renamed parameter to follow C# naming conventions (camelCase)
     public void SetupDoors(Room roomData)
     {
-        // Store the room's intended door configuration
+        Debug.Log($"[RoomController {gameObject.name}] SetupDoors called. RoomData: {roomData.roomDoors}");
         currentRoomDoorsState = roomData.roomDoors; 
 
-        // Activate/deactivate door visuals based on roomData
-        SetDoorActiveState(doorNorth, (roomData.roomDoors & RoomDoors.North) != 0);
-        SetDoorActiveState(doorSouth, (roomData.roomDoors & RoomDoors.South) != 0);
-        SetDoorActiveState(doorEast, (roomData.roomDoors & RoomDoors.East) != 0);
-        SetDoorActiveState(doorWest, (roomData.roomDoors & RoomDoors.West) != 0);
+        // Activate/deactivate door GameObjects (roomTransition will handle its own setup)
+        SetDoorGameObjectActiveState(doorNorth, (roomData.roomDoors & RoomDoors.North) != 0);
+        SetDoorGameObjectActiveState(doorSouth, (roomData.roomDoors & RoomDoors.South) != 0);
+        SetDoorGameObjectActiveState(doorEast, (roomData.roomDoors & RoomDoors.East) != 0);
+        SetDoorGameObjectActiveState(doorWest, (roomData.roomDoors & RoomDoors.West) != 0);
 
-        // When doors are initially set up, they should be unlocked
-        UnlockDoorsVisuals();
-        SetDoorColliders(false); // Colliders should be off to allow passage
+        // When rooms are initially set up, doors should be UNLOCKED (teleport active)
+        SetAllActiveDoorsLocked(false); 
+        Debug.Log($"[RoomController {gameObject.name}] Doors initially set to UNLOCKED during SetupDoors.");
     }
 
     // Helper to activate/deactivate the door GameObject itself
-    private void SetDoorActiveState(GameObject doorObject, bool isActive)
+    private void SetDoorGameObjectActiveState(GameObject doorObject, bool isActive)
     {
         if (doorObject != null)
         {
             doorObject.SetActive(isActive);
+            Debug.Log($"[RoomController {gameObject.name}] Door {doorObject.name} SetActive: {isActive}");
+        } else {
+            Debug.LogWarning($"[RoomController {gameObject.name}] Attempted to set active state for a null door object.");
         }
     }
 
-  private void SetDoorColliders(bool enable)
+    // This method now directly enables/disables the Collider2D on the door GameObjects
+    private void SetAllActiveDoorsLocked(bool isLocked)
     {
-        if (doorNorth != null && (currentRoomDoorsState & RoomDoors.North) != 0) 
+        Debug.Log($"[RoomController {gameObject.name}] SetAllActiveDoorsLocked called with isLocked: {isLocked}");
+
+        ProcessDoorCollider(doorNorth, RoomDoors.North, isLocked);
+        ProcessDoorCollider(doorSouth, RoomDoors.South, isLocked);
+        ProcessDoorCollider(doorEast, RoomDoors.East, isLocked);
+        ProcessDoorCollider(doorWest, RoomDoors.West, isLocked);
+    }
+
+    private void ProcessDoorCollider(GameObject doorObject, RoomDoors doorDirection, bool isLocked)
+    {
+        // Only try to set state for doors that are supposed to exist in this room
+        if (doorObject != null && (currentRoomDoorsState & doorDirection) != 0) 
         {
-            
-            Collider2D collider = doorNorth.GetComponent<Collider2D>();
-            if (collider != null)
+            Collider2D collider = doorObject.GetComponent<Collider2D>();
+            if (collider != null) 
             {
-                collider.enabled = enable;
+                collider.enabled = !isLocked; // This is the core logic: if isLocked is TRUE, collider.enabled becomes FALSE
+                Debug.Log($"[RoomController {gameObject.name}] Door {doorObject.name} collider.enabled set to: {collider.enabled} (based on isLocked: {isLocked})");
+            }
+            else
+            {
+                Debug.LogError($"[RoomController {gameObject.name}] Door {doorObject.name} is missing a Collider2D component!");
             }
         }
-        if (doorSouth != null && (currentRoomDoorsState & RoomDoors.South) != 0) 
+        else if (doorObject == null)
         {
-           
-            Collider2D collider = doorSouth.GetComponent<Collider2D>();
-            if (collider != null)
-            {
-                collider.enabled = enable;
-            }
+            Debug.LogWarning($"[RoomController {gameObject.name}] Attempted to process a null door object for {doorDirection}. Is it assigned in Inspector?");
         }
-        if (doorEast != null && (currentRoomDoorsState & RoomDoors.East) != 0) 
+        else // This door doesn't exist for this room type, so we don't need to process its collider
         {
-          
-            Collider2D collider = doorEast.GetComponent<Collider2D>();
-            if (collider != null)
-            {
-                collider.enabled = enable;
-            }
-        }
-        if (doorWest != null && (currentRoomDoorsState & RoomDoors.West) != 0) 
-        {
-            Collider2D collider = doorWest.GetComponent<Collider2D>();
-            if (collider != null)
-            {
-                collider.enabled = enable;
-            }
+             // Uncomment if you want to see logs for doors that are active in prefab but not in room data
+             // Debug.Log($"[RoomController {gameObject.name}] Door {doorObject.name} for {doorDirection} not relevant for this room's doors state: {currentRoomDoorsState}");
         }
     }
 
-    private void UnlockDoorsVisuals()
-    {
-       
-        Debug.Log($"[RoomController {gameObject.name}] Doors look unlocked."); // For debugging
+    // These methods are for visual effects if you want them, now triggered by RoomController
+    private void UnlockDoorsVisuals(){
+        Debug.Log($"[RoomController {gameObject.name}] Doors visuals unlocked."); 
+        // Add your visual changes here if you want room-wide effects
     }
 
-    private void LockDoorsVisuals() 
-    {
-      
-        Debug.Log($"[RoomController {gameObject.name}] Doors look locked."); // For debugging
+    private void LockDoorsVisuals() { 
+        Debug.Log($"[RoomController {gameObject.name}] Doors visuals locked."); 
+        // Add your visual changes here if you want room-wide effects
     }
 
-    // Changed to public so DungeonManager can call it
-    public void LockAllActiveDoors() // Renamed for consistency
+    public void LockAllActiveDoors() 
     {
+        Debug.Log($"[RoomController {gameObject.name}] LockAllActiveDoors called. Current areDoorsLocked: {areDoorsLocked}");
         if (areDoorsLocked)
         {
-            return; // Already locked
+            Debug.Log($"[RoomController {gameObject.name}] Doors already locked, returning.");
+            return; 
         }
         areDoorsLocked = true;
-        SetDoorColliders(true); // Enable colliders to block passage
-        LockDoorsVisuals();     // Update visuals to locked state
-        Debug.Log($"[RoomController {gameObject.name}] Doors locked."); // Debugging
+        SetAllActiveDoorsLocked(true); // Disable colliders (lock teleport)
+        LockDoorsVisuals(); // Update visuals
+        Debug.Log($"[RoomController {gameObject.name}] Doors are now set to LOCKED.");
     }
 
-    // Changed to public and consistent naming
-    public void UnlockAllActiveDoors() // Renamed for consistency
+    public void UnlockAllActiveDoors() 
     {
-        if (!areDoorsLocked) // Simplified condition
+        Debug.Log($"[RoomController {gameObject.name}] UnlockAllActiveDoors called. Current areDoorsLocked: {areDoorsLocked}");
+        if (!areDoorsLocked) 
         {
-            return; // Already unlocked
+            Debug.Log($"[RoomController {gameObject.name}] Doors already unlocked, returning.");
+            return; 
         }
         areDoorsLocked = false;
-        SetDoorColliders(false); // Disable colliders to allow passage
-        UnlockDoorsVisuals();    // Update visuals to unlocked state
-        Debug.Log($"[RoomController {gameObject.name}] Doors unlocked."); // Debugging
+        SetAllActiveDoorsLocked(false); // Enable colliders (unlock teleport)
+        UnlockDoorsVisuals(); // Update visuals
+        Debug.Log($"[RoomController {gameObject.name}] Doors are now set to UNLOCKED.");
     }
 
     public void RegisterEnemy(GameObject enemy)
@@ -124,7 +125,7 @@ public class RoomController : MonoBehaviour
         if (enemy != null && !activeEnemiesInRoom.Contains(enemy))
         {
             activeEnemiesInRoom.Add(enemy);
-            Debug.Log($"[RoomController {gameObject.name}] Enemy registered: {enemy.name}. Total: {activeEnemiesInRoom.Count}"); // Added Debug.Log back
+            Debug.Log($"[RoomController {gameObject.name}] Enemy registered: {enemy.name}. Total: {activeEnemiesInRoom.Count}");
         }
     }
 
@@ -136,7 +137,8 @@ public class RoomController : MonoBehaviour
             Debug.Log($"[RoomController {gameObject.name}] Enemy defeated: {enemy.name}. Remaining: {activeEnemiesInRoom.Count}");
             if (activeEnemiesInRoom.Count == 0)
             {
-                UnlockAllActiveDoors(); // Calls the now correctly named public method
+                Debug.Log($"[RoomController {gameObject.name}] All enemies defeated, calling UnlockAllActiveDoors.");
+                UnlockAllActiveDoors(); 
             }
         }
     }
@@ -149,8 +151,7 @@ public class RoomController : MonoBehaviour
     void OnDisable()
     {
         activeEnemiesInRoom.Clear();
-        areDoorsLocked = false; // Reset lock state
+        areDoorsLocked = false; 
+        Debug.Log($"[RoomController {gameObject.name}] OnDisable called. Enemy list cleared, doors unlocked state reset.");
     }
-
-
 }

@@ -168,7 +168,7 @@ List<Vector2Int> GetValidNeighbors(Vector2Int gridPos)
 
     return neighbors;
 }
-    void LoadRoomAtGridPosition(Vector2Int gridPos, string spawnPointName)
+ void LoadRoomAtGridPosition(Vector2Int gridPos, string spawnPointName)
     {
         Debug.Log($"[LoadRoom] Attempting to load room at grid: {gridPos.x},{gridPos.y} with spawn point: {spawnPointName}");
         Room roomToLoad = dungeonGrid[gridPos.x, gridPos.y];
@@ -197,7 +197,6 @@ List<Vector2Int> GetValidNeighbors(Vector2Int gridPos)
             roomToLoad.instantiatedRoomObject.SetActive(true);
             currentActiveRoomObject = roomToLoad.instantiatedRoomObject;
             Debug.Log($"[LoadRoom] currentActiveRoomObject set to (existing room): {currentActiveRoomObject.name}");
-    
         }
         else
         {
@@ -216,40 +215,41 @@ List<Vector2Int> GetValidNeighbors(Vector2Int gridPos)
             roomToLoad.visited = true;
 
             Debug.Log($"[LoadRoom] New room instantiated and assigned: {newRoomObject.name}. currentActiveRoomObject set to (new room): {currentActiveRoomObject.name}. Player will be placed.");
-            
-         
         }
-         if (currentActiveRoomObject != null)
-    {
-        
-        Debug.Log($"[LoadRoom Debug] Room to load at {gridPos.x},{gridPos.y} has roomType: {roomToLoad.roomType}, roomDoors data: {roomToLoad.roomDoors}");
 
-     
-
-        RoomController roomController = currentActiveRoomObject.GetComponent<RoomController>();
-        if (roomController != null)
+        if (currentActiveRoomObject != null)
         {
-       
+            Debug.Log($"[LoadRoom Debug] Room to load at {gridPos.x},{gridPos.y} has roomType: {roomToLoad.roomType}, roomDoors data: {roomToLoad.roomDoors}");
 
-            roomController.SetupDoors(roomToLoad); 
-            Debug.Log($"[LoadRoom Debug] RoomController found on {currentActiveRoomObject.name}. Setting up doors based on data: {roomToLoad.roomDoors}");
+            RoomController roomController = currentActiveRoomObject.GetComponent<RoomController>();
+            if (roomController != null)
+            {
+                roomController.SetupDoors(roomToLoad); 
+                Debug.Log($"[LoadRoom Debug] RoomController found on {currentActiveRoomObject.name}. Setting up doors based on data: {roomToLoad.roomDoors}");
+            }
+            else
+            {
+                Debug.LogWarning($"[LoadRoom] Room object {currentActiveRoomObject.name} is missing a RoomController! Doors might not update visually.");
+            }
+
+            // Place the player AFTER the room's doors have been set up visually.
+            PlacePlayerInCurrentRoom(spawnPointName);
+            Debug.Log("Player will be placed in current room after door setup.");
+            
+            // --- ADD THIS CRUCIAL BLOCK HERE ---
+            if (roomController != null) 
+            {
+                // Call the method to check for enemies and lock/unlock doors
+                CheckRoomForEnemiesAndLockDoors(roomController, currentActiveRoomObject); 
+                Debug.Log($"[LoadRoom] Called CheckRoomForEnemiesAndLockDoors for {currentActiveRoomObject.name}.");
+            }
+            // ------------------------------------
         }
         else
         {
-           
-            Debug.LogWarning($"[LoadRoom] Room object {currentActiveRoomObject.name} is missing a RoomController! Doors might not update visually.");
+            Debug.LogError("[LoadRoom Final Error] currentActiveRoomObject is NULL after instantiation/activation attempt. Cannot proceed with RoomController setup or player placement.");
+            return; 
         }
-
-        // Place the player AFTER the room's doors have been set up visually.
-            PlacePlayerInCurrentRoom(spawnPointName);
-        Debug.Log("Player will be placed in current room after door setup.");
-    }
-    else
-    {
-       
-        Debug.LogError("[LoadRoom Final Error] currentActiveRoomObject is NULL after instantiation/activation attempt. Cannot proceed with RoomController setup or player placement.");
-        return; 
-    }
     }
      void CheckRoomForEnemiesAndLockDoors(RoomController roomController, GameObject roomObject)
     {
@@ -283,6 +283,7 @@ List<Vector2Int> GetValidNeighbors(Vector2Int gridPos)
 
     if (currentPlayerInstance == null) // Add a null check for player instance
     {
+        
         Debug.LogError("[PlacePlayer Error] currentPlayerInstance is NULL. Cannot place player.");
         return;
     }
@@ -441,6 +442,7 @@ public void MovePlayer(RoomDoors exitDirection)
     }
     return generatedDoors;
     }
+    
 
     private void OnDrawGizmos()
     {
@@ -457,15 +459,15 @@ public void MovePlayer(RoomDoors exitDirection)
                     );
 
                     Vector3 cubeDimensions = new Vector3(roomWorldSize, roomWorldSize, 0.1f);
-                Room currentRoom = dungeonGrid[x, y];
+                    Room currentRoom = dungeonGrid[x, y];
                     Gizmos.color = Color.grey;
                     Gizmos.DrawWireCube(cellCenter, cubeDimensions);
-                     if (currentRoom.roomType == RoomType.Blocked)
-            {
-                Gizmos.color = Color.red; 
-                
-                Gizmos.DrawCube(cellCenter, new Vector3(roomWorldSize,  roomWorldSize,0.1f));
-            }
+                    if (currentRoom.roomType == RoomType.Blocked)
+                    {
+                        Gizmos.color = Color.red;
+
+                        Gizmos.DrawCube(cellCenter, new Vector3(roomWorldSize, roomWorldSize, 0.1f));
+                    }
                     if (dungeonGrid[x, y] != null && dungeonGrid[x, y].roomPrefab != null)
                     {
                         if (dungeonGrid[x, y].visited)
