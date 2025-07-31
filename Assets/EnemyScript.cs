@@ -106,18 +106,5 @@ public class EnemyScript : MonoBehaviour // Keeping the name EnemyScript for now
 
 
 
-    void OnCollisionEnter2D(Collision2D collision)
-{
-    if (collision.gameObject.CompareTag("Player"))
-    {
-        // Get the PlayerScript component from the collided GameObject
-        playerScript playerScript = collision.gameObject.GetComponent<playerScript>();
-        if (playerScript != null)
-        {
-
-            playerScript.TakeDamage(enemyDamage); // Call TakeDamage on your PlayerScript
-            Debug.Log($"[EnemyScript] {gameObject.name} hit Player for {enemyDamage} damage.");
-        }
-    }
-}
+ 
 }

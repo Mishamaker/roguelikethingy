@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3999725943280949544}
   - component: {fileID: 3033039782899600870}
   - component: {fileID: -921812203425074677}
+  - component: {fileID: -8063220126232185393}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -76,17 +77,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 5248571501132639836}
-  player: {fileID: 5315696981936067212}
+  bulletprefab: {fileID: 7329599158581296414, guid: 213780de2cc4be34eaeafdf487dc9173, type: 3}
   projectilespeed: 30
-  moveSpeed: 20
-  dashStrength: 10
+  gunCoolDown: 0.5
+  shootMouseButton: 0
+  delay: 4.95
+  dashStrength: 75
   dashDuration: 0.2
   dashCooldown: 1
-  bulletprefab: {fileID: 7329599158581296414, guid: 213780de2cc4be34eaeafdf487dc9173, type: 3}
-  gunCoolDown: 0.5
-  delay: 5
-  shootMouseButton: 0
-  playerHealth: 100
   damageTickRate: 0.1
   nextDamageTime: 0
 --- !u!212 &3999725943280949544
@@ -202,3 +200,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5cc02359830c6241879c0b11a4b5395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8063220126232185393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5315696981936067212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9abac6f8d28b4047867152c54509d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
+  moveSpeed: 25
+  baseDamage: 40
+  isDualWielding: 0
+  isInvincible: 0

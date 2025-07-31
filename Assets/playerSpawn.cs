@@ -6,17 +6,22 @@ public class playerSpawn : MonoBehaviour
     public GameObject prefabplayer;
     void Awake()
     {
-        GameObject player=Instantiate(prefabplayer);    
+        GameObject player = Instantiate(prefabplayer);
+        Debug.Log("player spawned");
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-      
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    void LateUpdate()
+    {
+
     }
 }

@@ -3,6 +3,13 @@ using System.Collections.Generic;
 
 public class DungeonManager : MonoBehaviour
 {
+    [Header("Room Prefabs")] 
+    public GameObject[] roomPrefabs; 
+
+    
+    public GameObject[] standardRoomPrefabs;
+    public GameObject[] treasureRoomPrefabs;
+    public GameObject[] bossRoomPrefabs;
     [Header("Dungeon Generation Settings")]
     [Tooltip("The size of the dungeon grid, like 9*9")]
     public int dungeonGridSize = 9;
@@ -201,8 +208,14 @@ List<Vector2Int> GetValidNeighbors(Vector2Int gridPos)
         else
         {
             Debug.Log($"[LoadRoom] roomToLoad.instantiatedRoomObject is NULL. Instantiating new room from prefab: {roomToLoad.roomPrefab.name}");
-            
-            GameObject newRoomObject = Instantiate(roomToLoad.roomPrefab, roomToLoad.worldPosition, Quaternion.identity);
+             Vector3 roomWorldPosition = new Vector3(roomToLoad.worldPosition.x, roomToLoad.worldPosition.y, 0f); // Ensure Z is handled
+        int randomIndex = Random.Range(0, roomPrefabs.Length); 
+
+        
+        GameObject chosenRoomPrefab = roomPrefabs[randomIndex];
+
+   
+        GameObject newRoomObject = Instantiate(chosenRoomPrefab, roomWorldPosition , Quaternion.identity);
 
             if (newRoomObject == null)
             {
@@ -232,11 +245,10 @@ List<Vector2Int> GetValidNeighbors(Vector2Int gridPos)
                 Debug.LogWarning($"[LoadRoom] Room object {currentActiveRoomObject.name} is missing a RoomController! Doors might not update visually.");
             }
 
-            // Place the player AFTER the room's doors have been set up visually.
             PlacePlayerInCurrentRoom(spawnPointName);
             Debug.Log("Player will be placed in current room after door setup.");
             
-            // --- ADD THIS CRUCIAL BLOCK HERE ---
+            
             if (roomController != null) 
             {
                 // Call the method to check for enemies and lock/unlock doors
@@ -417,31 +429,52 @@ public void MovePlayer(RoomDoors exitDirection)
             default: return "PlayerSpawn_Start";
         }
     }
-    private RoomDoors CalculateRoomDoors(Vector2Int roomGridPos){
-        RoomDoors generatedDoors =RoomDoors.None;
-         Vector2Int northNeighborPos = new Vector2Int(roomGridPos.x, roomGridPos.y + 1);
-    if (northNeighborPos.y < dungeonGridSize && dungeonGrid[northNeighborPos.x, northNeighborPos.y].roomType != RoomType.Blocked)
+    private RoomDoors CalculateRoomDoors(Vector2Int roomGridPos)
+{
+    RoomDoors generatedDoors = RoomDoors.None;
+
+    // --- North ---
+    Vector2Int northNeighborPos = new Vector2Int(roomGridPos.x, roomGridPos.y + 1);
+    if (northNeighborPos.y < dungeonGridSize && // Check upper Y boundary
+        northNeighborPos.x >= 0 && northNeighborPos.x < dungeonGridSize && // Check X boundaries
+        dungeonGrid[northNeighborPos.x, northNeighborPos.y].roomType != RoomType.Blocked)
     {
-        Debug.Log("The north is not blocked");
+        Debug.Log($"Room at {roomGridPos}: North is not blocked.");
         generatedDoors |= RoomDoors.North;
-    } Vector2Int eastNeighborPos = new Vector2Int(roomGridPos.x+1, roomGridPos.y);
-    if (eastNeighborPos.y < dungeonGridSize && dungeonGrid[eastNeighborPos.x, eastNeighborPos.y].roomType != RoomType.Blocked)
+    }
+
+    // --- East ---
+    Vector2Int eastNeighborPos = new Vector2Int(roomGridPos.x + 1, roomGridPos.y);
+    if (eastNeighborPos.x < dungeonGridSize && // Check right X boundary
+        eastNeighborPos.y >= 0 && eastNeighborPos.y < dungeonGridSize && // Check Y boundaries
+        dungeonGrid[eastNeighborPos.x, eastNeighborPos.y].roomType != RoomType.Blocked)
     {
-        Debug.Log("The east is not blocked");
+        Debug.Log($"Room at {roomGridPos}: East is not blocked.");
         generatedDoors |= RoomDoors.East;
     }
-     Vector2Int southNeighborPos = new Vector2Int(roomGridPos.x, roomGridPos.y-1);
-    if (southNeighborPos.y < dungeonGridSize && dungeonGrid[southNeighborPos.x, southNeighborPos.y].roomType != RoomType.Blocked)
-    {Debug.Log("The south is not blocked");
+
+    // --- South ---
+    Vector2Int southNeighborPos = new Vector2Int(roomGridPos.x, roomGridPos.y - 1);
+    if (southNeighborPos.y >= 0 && // Check lower Y boundary
+        southNeighborPos.x >= 0 && southNeighborPos.x < dungeonGridSize && // Check X boundaries
+        dungeonGrid[southNeighborPos.x, southNeighborPos.y].roomType != RoomType.Blocked)
+    {
+        Debug.Log($"Room at {roomGridPos}: South is not blocked.");
         generatedDoors |= RoomDoors.South;
     }
-     Vector2Int westNeighborPos = new Vector2Int(roomGridPos.x-1, roomGridPos.y);
-    if (westNeighborPos.y < dungeonGridSize && dungeonGrid[westNeighborPos.x, westNeighborPos.y].roomType != RoomType.Blocked)
-    {   Debug.Log("The west is not blocked");
+
+    // --- West ---
+    Vector2Int westNeighborPos = new Vector2Int(roomGridPos.x - 1, roomGridPos.y);
+    if (westNeighborPos.x >= 0 && // Check left X boundary
+        westNeighborPos.y >= 0 && westNeighborPos.y < dungeonGridSize && // Check Y boundaries
+        dungeonGrid[westNeighborPos.x, westNeighborPos.y].roomType != RoomType.Blocked)
+    {
+        Debug.Log($"Room at {roomGridPos}: West is not blocked.");
         generatedDoors |= RoomDoors.West;
     }
+
     return generatedDoors;
-    }
+}
     
 
     private void OnDrawGizmos()

@@ -6,24 +6,11 @@ using System.Collections.Generic; // Make sure this is included for Stack and Di
 public class GameManager : MonoBehaviour
 
 {
-    private Scene _previousActiveScene;
-
-    public List<string> allRoomScenes = new List<string>();
-    private List<string> availableRoomScenes = new List<string>();
-    private string _nextPlayerSpawnPointName;
+   
     public GameObject gameOverPanel;
-    public string _lastEnteredDoorName;
+ 
     public static GameManager Instance;
 
-    private Stack<string> _roomHistoryStack = new Stack<string>();
-    private string _currentRoomSceneName;     // Stores the name of the room the player is currently in
-
-
-    // Key: Room Scene Name (string), Value: Is Cleared (bool)
-    private Dictionary<string, bool> _roomClearedStates = new Dictionary<string, bool>();
-
-    // This will track if the player is currently backtracking (used internally by GameManager)
-    private bool _isBacktracking = false; // FIXED: Consistent lowercase 't'
 
     void Awake()
     {
@@ -65,16 +52,17 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (gameOverPanel != null) // ADDED: Null check
+        if (gameOverPanel != null) 
         {
             gameOverPanel.SetActive(true); // Show the game over panel
         }
-        Time.timeScale = 0f; // Pause game
+        Time.timeScale = 0f; 
         Debug.Log("Game Over! Time scaled to 0.");
     }
 
 
-    // Call this method when a scene is loaded
+
+
 
 
 
@@ -88,5 +76,6 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Restart game button pressed");
         Time.timeScale = 1f;
+        SceneManager.LoadScene("SampleScene")   ;  
     }
 }

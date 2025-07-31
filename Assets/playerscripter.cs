@@ -56,7 +56,7 @@ public class Playerscripter : MonoBehaviour
         else
         {
             playerTransform = null;
-            Instantiate(playerPrefab);
+         
             Debug.LogWarning("CameraFollow: Player with tag 'Player' NOT found. Camera will not follow.");
         }
     }
