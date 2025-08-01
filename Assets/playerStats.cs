@@ -2,17 +2,18 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 
 public class PlayerStats : MonoBehaviour
 {
-
+    public event Action OnStatsChanged;
+    private GameManager GameManager;
     [Header("Core Stats")]
     public float maxHealth = 100f; // Maximum health the player can have
-    public float currentHealth;    // Player's current health (initialized in Awake)
+    public float currentHealth;    
     public float moveSpeed = 5f;   // Player's base movement speed
-    public float baseDamage = 10f; // Player's base damage output (e.g., for projectiles)
-
+    public float baseDamage = 10f;
     [Header("Ability States")]
     public bool isDualWielding = false;     // Flag for temporary dual-wielding ability
     public bool isInvincible = false;       // Flag for temporary invincibility
@@ -30,10 +31,10 @@ public class PlayerStats : MonoBehaviour
        
     }
 
-  
+
     public void ApplyBuff(BuffItem buff)
     {
-        
+
         if (buff == null)
         {
             Debug.LogWarning("Attempted to apply a null buff!");
@@ -93,6 +94,7 @@ public class PlayerStats : MonoBehaviour
                 Debug.LogWarning($"BuffEffectType {buff.buffEffectType} not handled in PlayerStats.ApplyBuff!");
                 break;
         }
+         OnStatsChanged?.Invoke();
 
         // TODO: (Optional) Update UI to show buff icon/timer for temporary buffs, or character sheet for permanent ones.
     }
@@ -103,17 +105,22 @@ public class PlayerStats : MonoBehaviour
     {
         moveSpeed += amount;
         Debug.Log($"Speed Boost Applied! New speed: {moveSpeed}");
+        OnStatsChanged?.Invoke();
         yield return new WaitForSeconds(duration); // Pause execution for the buff duration
         moveSpeed -= amount; // Revert speed after duration
+        OnStatsChanged?.Invoke();
         Debug.Log($"Speed Boost Worn Off. New speed: {moveSpeed}");
+
     }
 
     IEnumerator ApplyTimedDamageBoost(float amount, float duration)
     {
         baseDamage += amount;
+        OnStatsChanged?.Invoke();
         Debug.Log($"Damage Boost Applied! New damage: {baseDamage}");
         yield return new WaitForSeconds(duration);
         baseDamage -= amount;
+        OnStatsChanged?.Invoke();
         Debug.Log($"Damage Boost Worn Off. New damage: {baseDamage}");
     }
 
@@ -121,8 +128,10 @@ public class PlayerStats : MonoBehaviour
     {
         isDualWielding = true;
         Debug.Log("Dual Wielding activated!");
+        OnStatsChanged?.Invoke();
         // TODO: Visual/animation changes for dual wielding
         yield return new WaitForSeconds(duration);
+        OnStatsChanged?.Invoke();
         isDualWielding = false;
         Debug.Log("Dual Wielding deactivated!");
         // TODO: Revert visual/animation changes
@@ -132,8 +141,10 @@ public class PlayerStats : MonoBehaviour
     {
         isInvincible = true;
         Debug.Log("Invincibility activated!");
+        OnStatsChanged?.Invoke();
         // TODO: Visual feedback (aura, flashing, particle effect)
         yield return new WaitForSeconds(duration);
+        OnStatsChanged?.Invoke();
         isInvincible = false;
         Debug.Log("Invincibility deactivated!");
         // TODO: Remove visual feedback
@@ -151,8 +162,9 @@ public class PlayerStats : MonoBehaviour
 
         currentHealth -= damage; // Deduct damage from current health
         Debug.Log($"Player took {damage} damage. Current health: {currentHealth}");
+        OnStatsChanged?.Invoke();
 
-        // Check if health has dropped to or below zero.
+        // Check if health has dropped  to or below zero.
         if (currentHealth <= 0)
         {
             Die(); // Call the Die method

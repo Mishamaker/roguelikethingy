@@ -90,21 +90,22 @@ public class playerScript : MonoBehaviour
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.linearVelocity = bulletDirection * projectilespeed;
         BulletScript bulletScript = bullet.GetComponent<BulletScript>(); 
+        if (playerStats.isDualWielding==true){
+            
+        }
 
        if (bulletScript != null)
         {
-            bulletScript.damageToDeal = playerStats.baseDamage; 
-            // --- DEBUGGING LOGS (Added/Modified) ---
-            // Log the damage value immediately after setting it on the bullet
+            bulletScript.damageToDeal = playerStats.baseDamage;
             Debug.Log($"[playerScript] Set bullet's damageToDeal to: {bulletScript.damageToDeal}");
-            // --- END DEBUGGING LOGS ---
+
         }
         Destroy(bullet, delay);
         yield return new WaitForSeconds(gunCoolDown);
         isshooting = false;
     }
 
-    // Renamed to follow C# naming conventions
+    
     IEnumerator Dasher()
     {
         isdashing = true;

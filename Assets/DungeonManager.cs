@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class DungeonManager : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class DungeonManager : MonoBehaviour
     private GameObject currentPlayerInstance;
     [Tooltip("The Current (X,Y) position of the player on the dungeon Grid")]
     public Vector2Int currentGridPosition;
+    public static event Action<GameObject> OnPlayerSpawned;
+    
     private GameObject currentActiveRoomObject;
     private Transform spawnPoint;
        public float blockedCellPercentage = 0.2f; 
@@ -75,7 +78,7 @@ public class DungeonManager : MonoBehaviour
             // Skip immediate neighbors of start room to ensure initial paths
             if ((Mathf.Abs(x - startX) <= 1 && y == startY) || (Mathf.Abs(y - startY) <= 1 && x == startX)) continue; 
 
-            if (Random.value < blockedCellPercentage)
+            if (UnityEngine.Random.value < blockedCellPercentage)
             {
                 dungeonGrid[x, y] = new Room(RoomType.Blocked);
             }
@@ -105,6 +108,7 @@ public class DungeonManager : MonoBehaviour
     if (playerPrefab != null)
     {
         currentPlayerInstance = Instantiate(playerPrefab);
+        OnPlayerSpawned?.Invoke(currentPlayerInstance);
         Debug.Log("Player instantiated.");
     }
     else
@@ -209,7 +213,7 @@ List<Vector2Int> GetValidNeighbors(Vector2Int gridPos)
         {
             Debug.Log($"[LoadRoom] roomToLoad.instantiatedRoomObject is NULL. Instantiating new room from prefab: {roomToLoad.roomPrefab.name}");
              Vector3 roomWorldPosition = new Vector3(roomToLoad.worldPosition.x, roomToLoad.worldPosition.y, 0f); // Ensure Z is handled
-        int randomIndex = Random.Range(0, roomPrefabs.Length); 
+        int randomIndex = UnityEngine.Random.Range(0, roomPrefabs.Length); 
 
         
         GameObject chosenRoomPrefab = roomPrefabs[randomIndex];

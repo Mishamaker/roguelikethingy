@@ -6,6 +6,7 @@ public class InventorySlotUI : MonoBehaviour
     [SerializeField] private Image iconImage;
     [SerializeField] private TextMeshProUGUI quantityText;
     [SerializeField] private Button button;
+    private InventoryManager inventoryManager;
     private InventorySlot currentInventorySlot;
     void Awake()
     {
@@ -43,20 +44,26 @@ public class InventorySlotUI : MonoBehaviour
             button.interactable = false;
         }
     }
-    public void OnSlotClicked()
+ // InventorySlotUI.cs (only showing the OnSlotClicked method)
+private void OnSlotClicked()
+{
+    // Make sure we have an item to work with
+    if (currentInventorySlot != null && currentInventorySlot.item != null)
     {
-        if (currentInventorySlot != null && currentInventorySlot.item != null)
+      
+        BuffItem buffItem = currentInventorySlot.item as BuffItem; 
+        
+       
+        if (buffItem != null) // This condition is ONLY true if the item was a BuffItem
         {
-            BuffItem buffItem = currentInventorySlot.item;
-            if (buffItem != null)
-            {
-                InventoryManager.Instance.UseBuffItem(buffItem);
-            }
-            else
-            {
-                Debug.Log("clicked on non buff item boi");
-            }
-
+           
+            InventoryManager.Instance.UseBuffItem(buffItem);
+        }
+        else
+        {
+            
         }
     }
 }
+    }
+
