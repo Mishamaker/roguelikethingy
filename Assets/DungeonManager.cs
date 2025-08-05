@@ -25,7 +25,7 @@ public class DungeonManager : MonoBehaviour
 
     [Header("Player Settings")]
     public GameObject playerPrefab;
-    private GameObject currentPlayerInstance;
+    public GameObject currentPlayerInstance;
     [Tooltip("The Current (X,Y) position of the player on the dungeon Grid")]
     public Vector2Int currentGridPosition;
     public static event Action<GameObject> OnPlayerSpawned;

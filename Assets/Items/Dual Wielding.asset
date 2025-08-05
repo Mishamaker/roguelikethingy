@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 888df49b86ed7654098f72a9abd6420d, type: 3}
-  m_Name: NewBuffItem 3
+  m_Name: Dual Wielding
   m_EditorClassIdentifier: 
-  itemName: New Item
+  itemName: Dual wielding
   icon: {fileID: 0}
-  isStackable: 0
-  maxStackSize: 1
+  isStackable: 1
+  maxStackSize: 10
   description: A generic item.
-  buffEffectType: 0
+  buffEffectType: 4
   buffAmount: 0
-  buffDuration: 0
+  buffDuration: 10

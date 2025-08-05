@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour // Keeping the name EnemyScript for now
 {
     public float zombieHealth = 100f; // Existing health
+    public ItemDropHandler ItemDropHander;
     public Transform playerTransform;
     public Transform zombieTransform; // Likely just transform, but kept for consistency
     public float zombieSpeed = 5f;
@@ -13,6 +14,7 @@ public class EnemyScript : MonoBehaviour // Keeping the name EnemyScript for now
 
     // NEW: Reference to the RoomController of the room this enemy belongs to
     private RoomController parentRoomController; 
+
 
     void Start()
     {
@@ -95,6 +97,9 @@ public class EnemyScript : MonoBehaviour // Keeping the name EnemyScript for now
 
     void Die()
     {
+        GetComponent<ItemDropHandler>().DropItem();
+
+
         if (parentRoomController != null)
         {
       

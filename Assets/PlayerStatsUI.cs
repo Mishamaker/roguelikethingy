@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using System; // Make sure you have this line as well.
+using System;
 
 public class PlayerStatsUI : MonoBehaviour
 {
@@ -12,13 +12,23 @@ public class PlayerStatsUI : MonoBehaviour
 
     void Awake()
     {
-       
-        DungeonManager.OnPlayerSpawned += OnPlayerSpawnedHandler;
+        // First, check if the player has already spawned.
+        if (DungeonManager.Instance.currentPlayerInstance != null)
+        {
+            // If the player exists, connect immediately.
+            ConnectToPlayerStats(DungeonManager.Instance.currentPlayerInstance);
+        }
+        else
+        {
+            // If the player doesn't exist yet, subscribe to the event and wait.
+            DungeonManager.OnPlayerSpawned += ConnectToPlayerStats;
+        }
     }
 
-    private void OnPlayerSpawnedHandler(GameObject playerObject)
+    private void ConnectToPlayerStats(GameObject playerObject)
     {
-       
+        Debug.Log("Player Spawned Event Fired! Attempting to get PlayerStats.");
+
         playerStats = playerObject.GetComponent<PlayerStats>();
         
         if (playerStats == null)
@@ -27,16 +37,18 @@ public class PlayerStatsUI : MonoBehaviour
             return;
         }
 
-        
+        // Now that we have a reference, subscribe to the stat changes.
         playerStats.OnStatsChanged += RefreshUI;
         
-        
+        // Refresh the UI once to set the initial values.
         RefreshUI();
     }
 
     private void RefreshUI()
     {
-        
+        // Add a debug log here to confirm this method is running
+        Debug.Log($"UI Refreshing! Health: {playerStats.currentHealth}, Attack: {playerStats.baseDamage}, Speed: {playerStats.moveSpeed}");
+
         healthText.text = $"{playerStats.currentHealth}/{playerStats.maxHealth}";
         attackText.text = $"{playerStats.baseDamage}";
         SpeedText.text = $"{playerStats.moveSpeed}";
@@ -44,8 +56,8 @@ public class PlayerStatsUI : MonoBehaviour
 
     void OnDestroy()
     {
-        // It's very important to unsubscribe from both events when this object is destroyed.
-        DungeonManager.OnPlayerSpawned -= OnPlayerSpawnedHandler;
+        // Always unsubscribe to prevent errors.
+        DungeonManager.OnPlayerSpawned -= ConnectToPlayerStats;
         if (playerStats != null)
         {
             playerStats.OnStatsChanged -= RefreshUI;

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 888df49b86ed7654098f72a9abd6420d, type: 3}
-  m_Name: NewBuffItem 2
+  m_Name: perma damage increase
   m_EditorClassIdentifier: 
-  itemName: New Item
+  itemName: perma damage increase
   icon: {fileID: 0}
-  isStackable: 0
-  maxStackSize: 1
-  description: damage boost temporary
-  buffEffectType: 3
-  buffAmount: 20
-  buffDuration: 10
+  isStackable: 1
+  maxStackSize: 10
+  description: perma damage increase
+  buffEffectType: 8
+  buffAmount: 10
+  buffDuration: 0

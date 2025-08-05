@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7191263186768141530}
   - component: {fileID: 9148104027132691522}
   - component: {fileID: 6466815260098188712}
+  - component: {fileID: 4777774210756624374}
   m_Layer: 0
   m_Name: Big Zombie
   m_TagString: Enemy
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieHealth: 300
+  ItemDropHander: {fileID: 0}
   playerTransform: {fileID: 0}
   zombieTransform: {fileID: 8826735677641392707}
   zombieSpeed: 5
@@ -182,3 +184,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 150, y: 200}
   m_EdgeRadius: 0
+--- !u!114 &4777774210756624374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5916311786934996727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa6a0e33423fbf459dce1aa998d06ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDropPrefab: {fileID: 3751650116377535833, guid: 05228bed4c9693a49992770776d8b523, type: 3}
+  possibleDrops:
+  - {fileID: 11400000, guid: f5f0de6a770f7e8449b749a08966e1a9, type: 2}
+  - {fileID: 11400000, guid: 13c687d9d97c3ba4bb53f7a4f8288e13, type: 2}
+  - {fileID: 11400000, guid: 658e27a7b3912df4884a989905f63337, type: 2}
+  - {fileID: 11400000, guid: 493b29d06afb4e94ab57c05d9a52be57, type: 2}
+  - {fileID: 11400000, guid: be8bb7b1d85d2e84ea97ac46163f6258, type: 2}
+  - {fileID: 11400000, guid: 6af5657028c1e8348a6608934eb0081a, type: 2}
+  - {fileID: 11400000, guid: 89d5782ce5db07a429611c4b695d45a1, type: 2}
+  dropChance: 0.5
