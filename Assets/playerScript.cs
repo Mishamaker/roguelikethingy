@@ -127,7 +127,7 @@ public class playerScript : MonoBehaviour
     }
 
 
-    
+
 
     void OnCollisionStay2D(Collision2D collision)
     {
@@ -137,7 +137,7 @@ public class playerScript : MonoBehaviour
 
             if (enemyScript != null)
             {
-                
+
                 playerStats.TakeDamage(enemyScript.enemyDamage);
             }
             else
@@ -148,5 +148,41 @@ public class playerScript : MonoBehaviour
             nextDamageTime = Time.time + damageTickRate;
             Debug.Log("Player got hit.");
         }
+       void OnCollisionStay2D(Collision2D collision)
+{
+    // Handle regular enemy damage
+    if (collision.gameObject.CompareTag("Enemy") && Time.time >= nextDamageTime)
+    {
+        EnemyScript enemyScript = collision.gameObject.GetComponent<EnemyScript>();
+        if (enemyScript != null)
+        {
+            playerStats.TakeDamage(enemyScript.enemyDamage);
+            Debug.Log("Player got hit by enemy.");
+        }
+        else
+        {
+            Debug.LogWarning("EnemyScript not found on colliding object with tag 'Enemy'!");
+        }
+        nextDamageTime = Time.time + damageTickRate;
+    }
+    
+    // Handle boss damage
+    if (collision.gameObject.CompareTag("Boss") && Time.time >= nextDamageTime)
+    {
+      
+        BossAI bossScript = collision.gameObject.GetComponent<BossAI>();
+        
+        
+        if (bossScript != null)
+        {
+          
+            playerStats.TakeDamage(bossScript.bossDamage); 
+            Debug.Log("Player got hit by boss.");
+        }
+        
+       
+        nextDamageTime = Time.time + damageTickRate;
+    }
+}
     }
 }

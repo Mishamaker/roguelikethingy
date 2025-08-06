@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Health potion
   m_EditorClassIdentifier: 
   itemName: Health
-  icon: {fileID: -205270267638800340, guid: 2dbcf9a89f518b94fb6d02fc061fff12, type: 3}
+  icon: {fileID: -2823696916193601315, guid: 156ba8913f615d94aa09c08ef71fa22b, type: 3}
   isStackable: 1
   maxStackSize: 5
   description: A generic item.

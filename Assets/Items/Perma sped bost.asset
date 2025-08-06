@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Perma sped bost
   m_EditorClassIdentifier: 
   itemName: Perma speed bost
-  icon: {fileID: 0}
+  icon: {fileID: 1208040086343421634, guid: 156ba8913f615d94aa09c08ef71fa22b, type: 3}
   isStackable: 0
   maxStackSize: 1
   description: A generic item.

@@ -12,8 +12,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Core Stats")]
     public float maxHealth = 100f; // Maximum health the player can have
     public float currentHealth;    
-    public float moveSpeed = 5f;   // Player's base movement speed
-    public float baseDamage = 10f;
+    public float moveSpeed = 25f;   // Player's base movement speed
+    public float baseDamage = 40f;
     [Header("Ability States")]
     public bool isDualWielding = false;     // Flag for temporary dual-wielding ability
     public bool isInvincible = false;       // Flag for temporary invincibility
@@ -29,6 +29,15 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
        
+    }
+    public void ResetStats()
+    {
+        maxHealth = 100;
+        currentHealth = 100;
+        moveSpeed = 25;
+        baseDamage = 40;
+        Debug.Log("player stats reverted");
+        OnStatsChanged?.Invoke();   
     }
 
 
@@ -94,7 +103,7 @@ public class PlayerStats : MonoBehaviour
                 Debug.LogWarning($"BuffEffectType {buff.buffEffectType} not handled in PlayerStats.ApplyBuff!");
                 break;
         }
-         OnStatsChanged?.Invoke();
+        OnStatsChanged?.Invoke();
 
         // TODO: (Optional) Update UI to show buff icon/timer for temporary buffs, or character sheet for permanent ones.
     }

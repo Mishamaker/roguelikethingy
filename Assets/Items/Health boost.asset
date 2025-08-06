@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Health boost
   m_EditorClassIdentifier: 
   itemName: Health Boost
-  icon: {fileID: 0}
+  icon: {fileID: 6106151065240408750, guid: 156ba8913f615d94aa09c08ef71fa22b, type: 3}
   isStackable: 0
   maxStackSize: 1
   description: increase health cap

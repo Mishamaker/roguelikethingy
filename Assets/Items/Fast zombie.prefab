@@ -103,11 +103,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8b995ba1bd8214cbda12e72bf5b9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieHealth: 60
+  zombieHealth: 100
   ItemDropHander: {fileID: 0}
   playerTransform: {fileID: 0}
   zombieTransform: {fileID: 2105409276967526492}
-  zombieSpeed: 15
+  zombieSpeed: 20
   zombieRigidBody: {fileID: 1854832019460302429}
   enemyDamage: 4
   retryFindPlayerInterval: 0.5

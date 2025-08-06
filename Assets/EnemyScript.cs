@@ -11,9 +11,12 @@ public class EnemyScript : MonoBehaviour // Keeping the name EnemyScript for now
     public float enemyDamage = 2;       // Damage dealt by this enemy
 
     public float retryFindPlayerInterval = .5f;
+   
 
     // NEW: Reference to the RoomController of the room this enemy belongs to
     private RoomController parentRoomController; 
+    
+
 
 
     void Start()

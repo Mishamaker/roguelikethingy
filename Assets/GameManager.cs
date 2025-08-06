@@ -6,14 +6,17 @@ using System.Collections.Generic; // Make sure this is included for Stack and Di
 public class GameManager : MonoBehaviour
 
 {
-   
+
     public GameObject gameOverPanel;
- 
+    PlayerStats playerStats;
+
     public static GameManager Instance;
 
 
     void Awake()
+
     {
+        
         Debug.Log("GameManager: Awake called. Instance ID: " + GetInstanceID());
 
         // Check if an instance already exists and handle potential duplicates
@@ -23,12 +26,12 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             Debug.Log("GameManager: Instance set and DontDestroyOnLoad called. Instance ID: " + GetInstanceID());
 
-            
+
         }
         else
         {
 
-            
+
             Destroy(gameObject);
             return;
         }
@@ -47,16 +50,16 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // Your Update logic here, if any
+       
     }
 
     public void GameOver()
     {
-        if (gameOverPanel != null) 
+        if (gameOverPanel != null)
         {
-            gameOverPanel.SetActive(true); // Show the game over panel
+            gameOverPanel.SetActive(true); 
         }
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
         Debug.Log("Game Over! Time scaled to 0.");
     }
 
@@ -68,14 +71,50 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void RestartGame()
+
+    public void RetryButton()
     {
+
+        if (DungeonManager.Instance != null)
+        {
+            Destroy(DungeonManager.Instance.gameObject);
+        }
+
+        if (MusicManager.Instance != null)
+        {
+            Destroy(MusicManager.Instance.gameObject);
+        }
+
+
+        GameObject oldPlayer = GameObject.Find("Player(Clone)");
+        if (oldPlayer != null)
+        {
+
+            PlayerStats playerStatsScript = oldPlayer.GetComponent<PlayerStats>();
+
+            if (playerStatsScript != null)
+            {
+
+                playerStatsScript.ResetStats();
+            }
+
+            Destroy(oldPlayer);
+        }
+
+        GameObject oldCamera = GameObject.Find("Main Camera");
+        if (oldCamera != null && oldCamera.transform.parent == null)
+        {
+            Destroy(oldCamera);
+        }
+
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(false);
+
         }
-        Debug.Log("Restart game button pressed");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
-        SceneManager.LoadScene("SampleScene")   ;  
+       
     }
+
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Temp Damage boost
   m_EditorClassIdentifier: 
   itemName: New Item
-  icon: {fileID: 0}
+  icon: {fileID: 7490263070313451839, guid: 156ba8913f615d94aa09c08ef71fa22b, type: 3}
   isStackable: 0
   maxStackSize: 1
   description: damage boost temporary

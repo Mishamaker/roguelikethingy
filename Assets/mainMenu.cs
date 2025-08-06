@@ -22,13 +22,13 @@ public class NewMonoBehaviourScript1 : MonoBehaviour
        
     }
 
-    // You might have other functions here for other buttons (e.g., Quit Game)
+    
     public void QuitGame()
     {
         Debug.Log("Quitting Game...");
         Application.Quit(); 
         #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // Stops play mode in the editor
+        UnityEditor.EditorApplication.isPlaying = false; 
         #endif
     }
 }

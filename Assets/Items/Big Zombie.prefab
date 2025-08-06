@@ -107,7 +107,7 @@ MonoBehaviour:
   ItemDropHander: {fileID: 0}
   playerTransform: {fileID: 0}
   zombieTransform: {fileID: 8826735677641392707}
-  zombieSpeed: 5
+  zombieSpeed: 7
   zombieRigidBody: {fileID: 9148104027132691522}
   enemyDamage: 2
   retryFindPlayerInterval: 0.5
