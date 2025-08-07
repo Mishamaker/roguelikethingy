@@ -1,0 +1,1170 @@
+fileFormatVersion: 2
+guid: 0dc3a66bd720b664db8c77682446dc22
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6612045940022308441
+    second: Business Man Sprite sheet (3)_0
+  - first:
+      213: -6327983848849414620
+    second: Business Man Sprite sheet (3)_1
+  - first:
+      213: 1411162997789684072
+    second: Business Man Sprite sheet (3)_2
+  - first:
+      213: -966561388926282683
+    second: Business Man Sprite sheet (3)_3
+  - first:
+      213: 4689815725683895323
+    second: Business Man Sprite sheet (3)_4
+  - first:
+      213: -2424118627724179347
+    second: Business Man Sprite sheet (3)_5
+  - first:
+      213: -7105561266694932177
+    second: Business Man Sprite sheet (3)_6
+  - first:
+      213: -4058711235287528232
+    second: Business Man Sprite sheet (3)_7
+  - first:
+      213: 481372501090441165
+    second: Business Man Sprite sheet (3)_8
+  - first:
+      213: 8815998634371418574
+    second: Business Man Sprite sheet (3)_9
+  - first:
+      213: 6173617431725302067
+    second: Business Man Sprite sheet (3)_10
+  - first:
+      213: 5545176996639922003
+    second: Business Man Sprite sheet (3)_11
+  - first:
+      213: -2627809356954910988
+    second: Business Man Sprite sheet (3)_12
+  - first:
+      213: -5002235537007934614
+    second: Business Man Sprite sheet (3)_13
+  - first:
+      213: 1884434569269746558
+    second: Business Man Sprite sheet (3)_14
+  - first:
+      213: 7655423820023111091
+    second: Business Man Sprite sheet (3)_15
+  - first:
+      213: -3937850613107156239
+    second: Business Man Sprite sheet (3)_16
+  - first:
+      213: 66402596682238113
+    second: Business Man Sprite sheet (3)_17
+  - first:
+      213: -1909646628733165297
+    second: Business Man Sprite sheet (3)_18
+  - first:
+      213: -8349138653753938797
+    second: Business Man Sprite sheet (3)_19
+  - first:
+      213: 6088811001935382669
+    second: Business Man Sprite sheet (3)_20
+  - first:
+      213: 4400386660745160422
+    second: Business Man Sprite sheet (3)_21
+  - first:
+      213: -5227724194227554654
+    second: Business Man Sprite sheet (3)_22
+  - first:
+      213: -2774372800222312372
+    second: Business Man Sprite sheet (3)_23
+  - first:
+      213: 6945800416738011338
+    second: Business Man Sprite sheet (3)_24
+  - first:
+      213: 2127470439027311003
+    second: Business Man Sprite sheet (3)_25
+  - first:
+      213: 4986809953012688185
+    second: Business Man Sprite sheet (3)_26
+  - first:
+      213: 9111881479124572052
+    second: Business Man Sprite sheet (3)_27
+  - first:
+      213: 5228806802842034537
+    second: Business Man Sprite sheet (3)_28
+  - first:
+      213: 1634559712310162880
+    second: Business Man Sprite sheet (3)_29
+  - first:
+      213: -5950522940375712254
+    second: Business Man Sprite sheet (3)_30
+  - first:
+      213: 4165805032801459634
+    second: Business Man Sprite sheet (3)_31
+  - first:
+      213: -790055006199643673
+    second: Business Man Sprite sheet (3)_32
+  - first:
+      213: 3962648380891535109
+    second: Business Man Sprite sheet (3)_33
+  - first:
+      213: 2566746057440924823
+    second: Business Man Sprite sheet (3)_34
+  - first:
+      213: -2093385886494327765
+    second: Business Man Sprite sheet (3)_35
+  - first:
+      213: -4783424591989836074
+    second: Business Man Sprite sheet (3)_36
+  - first:
+      213: -2816772662024650161
+    second: Business Man Sprite sheet (3)_37
+  - first:
+      213: -1452897808346537757
+    second: Business Man Sprite sheet (3)_38
+  - first:
+      213: -2561688490338737716
+    second: Business Man Sprite sheet (3)_39
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 191
+        width: 21
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a1186aef3b4d34a0800000000000000
+      internalID: -6612045940022308441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 191
+        width: 21
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 426ebe0773c7e28a0800000000000000
+      internalID: -6327983848849414620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 191
+        width: 21
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 861fd631545759310800000000000000
+      internalID: 1411162997789684072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_3
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 191
+        width: 21
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 544d07fa9851692f0800000000000000
+      internalID: -966561388926282683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_4
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 191
+        width: 20
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1ced670e82951140800000000000000
+      internalID: 4689815725683895323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_5
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 191
+        width: 20
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d68c71d93fccb5ed0800000000000000
+      internalID: -2424118627724179347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 195
+        width: 30
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f29bfd0cca9f36d90800000000000000
+      internalID: -7105561266694932177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_7
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 194
+        width: 21
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dccccea2af8ca7c0800000000000000
+      internalID: -4058711235287528232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_8
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 191
+        width: 10
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc713244dbd2ea600800000000000000
+      internalID: 481372501090441165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_9
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 191
+        width: 10
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec9890e7c08b85a70800000000000000
+      internalID: 8815998634371418574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_10
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 129
+        width: 31
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 331652d48581da550800000000000000
+      internalID: 6173617431725302067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_11
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 129
+        width: 31
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 357d36d491d64fc40800000000000000
+      internalID: 5545176996639922003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_12
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 127
+        width: 20
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe31450055288bd0800000000000000
+      internalID: -2627809356954910988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_13
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 127
+        width: 20
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a638ec5384d749ab0800000000000000
+      internalID: -5002235537007934614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_14
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 127
+        width: 20
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7b1acfa14bd62a10800000000000000
+      internalID: 1884434569269746558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_15
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 130
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bd9a8577678d3a60800000000000000
+      internalID: 7655423820023111091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_16
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 127
+        width: 21
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fa91332bb1f959c0800000000000000
+      internalID: -3937850613107156239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_17
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 127
+        width: 21
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a888635fc8ebe000800000000000000
+      internalID: 66402596682238113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_18
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 127
+        width: 21
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0166d742829f75e0800000000000000
+      internalID: -1909646628733165297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_19
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 127
+        width: 21
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c638a41a6e12c80800000000000000
+      internalID: -8349138653753938797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_20
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 63
+        width: 20
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8849daa85dcf7450800000000000000
+      internalID: 6088811001935382669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_21
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 63
+        width: 20
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e6251c8a50511d30800000000000000
+      internalID: 4400386660745160422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_22
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 63
+        width: 20
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a6f9530b846377b0800000000000000
+      internalID: -5227724194227554654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_23
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 66
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c484e3033a27f79d0800000000000000
+      internalID: -2774372800222312372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_24
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 63
+        width: 10
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac8ed68bda0746060800000000000000
+      internalID: 6945800416738011338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_25
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 63
+        width: 10
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b910e5ca71b468d10800000000000000
+      internalID: 2127470439027311003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_26
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 65
+        width: 31
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93524b32b35b43540800000000000000
+      internalID: 4986809953012688185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_27
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 65
+        width: 31
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4975eaeade7e37e70800000000000000
+      internalID: 9111881479124572052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_28
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 63
+        width: 20
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 961ab827514709840800000000000000
+      internalID: 5228806802842034537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_29
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 63
+        width: 20
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c57968e56f1fa610800000000000000
+      internalID: 1634559712310162880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_30
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 3
+        width: 30
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20eb717b9ee7b6da0800000000000000
+      internalID: -5950522940375712254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_31
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 2
+        width: 21
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bd5aaf1b99efc930800000000000000
+      internalID: 4165805032801459634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_32
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 20
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e1837268292905f0800000000000000
+      internalID: -790055006199643673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_33
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 0
+        width: 21
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50711d815b72ef630800000000000000
+      internalID: 3962648380891535109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_34
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 0
+        width: 28
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7949666a0f9ee9320800000000000000
+      internalID: 2566746057440924823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_35
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 0
+        width: 17
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2c70b1a0acc2f2e0800000000000000
+      internalID: -2093385886494327765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_36
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 0
+        width: 20
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d6f3906dacdd9db0800000000000000
+      internalID: -4783424591989836074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_37
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 0
+        width: 21
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f424df21030d8e8d0800000000000000
+      internalID: -2816772662024650161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_38
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 0
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e0af8e142546dbe0800000000000000
+      internalID: -1452897808346537757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Business Man Sprite sheet (3)_39
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 0
+        width: 16
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc12724f3ed037cd0800000000000000
+      internalID: -2561688490338737716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Business Man Sprite sheet (3)_0: -6612045940022308441
+      Business Man Sprite sheet (3)_1: -6327983848849414620
+      Business Man Sprite sheet (3)_10: 6173617431725302067
+      Business Man Sprite sheet (3)_11: 5545176996639922003
+      Business Man Sprite sheet (3)_12: -2627809356954910988
+      Business Man Sprite sheet (3)_13: -5002235537007934614
+      Business Man Sprite sheet (3)_14: 1884434569269746558
+      Business Man Sprite sheet (3)_15: 7655423820023111091
+      Business Man Sprite sheet (3)_16: -3937850613107156239
+      Business Man Sprite sheet (3)_17: 66402596682238113
+      Business Man Sprite sheet (3)_18: -1909646628733165297
+      Business Man Sprite sheet (3)_19: -8349138653753938797
+      Business Man Sprite sheet (3)_2: 1411162997789684072
+      Business Man Sprite sheet (3)_20: 6088811001935382669
+      Business Man Sprite sheet (3)_21: 4400386660745160422
+      Business Man Sprite sheet (3)_22: -5227724194227554654
+      Business Man Sprite sheet (3)_23: -2774372800222312372
+      Business Man Sprite sheet (3)_24: 6945800416738011338
+      Business Man Sprite sheet (3)_25: 2127470439027311003
+      Business Man Sprite sheet (3)_26: 4986809953012688185
+      Business Man Sprite sheet (3)_27: 9111881479124572052
+      Business Man Sprite sheet (3)_28: 5228806802842034537
+      Business Man Sprite sheet (3)_29: 1634559712310162880
+      Business Man Sprite sheet (3)_3: -966561388926282683
+      Business Man Sprite sheet (3)_30: -5950522940375712254
+      Business Man Sprite sheet (3)_31: 4165805032801459634
+      Business Man Sprite sheet (3)_32: -790055006199643673
+      Business Man Sprite sheet (3)_33: 3962648380891535109
+      Business Man Sprite sheet (3)_34: 2566746057440924823
+      Business Man Sprite sheet (3)_35: -2093385886494327765
+      Business Man Sprite sheet (3)_36: -4783424591989836074
+      Business Man Sprite sheet (3)_37: -2816772662024650161
+      Business Man Sprite sheet (3)_38: -1452897808346537757
+      Business Man Sprite sheet (3)_39: -2561688490338737716
+      Business Man Sprite sheet (3)_4: 4689815725683895323
+      Business Man Sprite sheet (3)_5: -2424118627724179347
+      Business Man Sprite sheet (3)_6: -7105561266694932177
+      Business Man Sprite sheet (3)_7: -4058711235287528232
+      Business Man Sprite sheet (3)_8: 481372501090441165
+      Business Man Sprite sheet (3)_9: 8815998634371418574
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
