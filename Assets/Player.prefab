@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
-  moveSpeed: 20
+  moveSpeed: 25
   baseDamage: 30
   isDualWielding: 0
   isInvincible: 0
